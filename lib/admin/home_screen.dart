@@ -1,14 +1,18 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_project/admin/all_meals_cubit/cubit.dart';
+import 'package:food_project/admin/all_meals_cubit/states.dart';
 import 'package:food_project/admin/screens/add_meal/add_meal_screen.dart';
-import 'package:food_project/admin/screens/all_meals_cubit/cubit.dart';
-import 'package:food_project/admin/screens/all_meals_cubit/states.dart';
 import 'package:food_project/screens/welcome/welcome_screen.dart';
 import 'package:food_project/shared/componentes/components.dart';
 import 'package:food_project/shared/network/local/local.dart';
 
-class AdminHomeScreen extends StatelessWidget {
+class AdminHomeScreen extends StatefulWidget {
+  @override
+  _AdminHomeScreenState createState() => _AdminHomeScreenState();
+}
+
+class _AdminHomeScreenState extends State<AdminHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,16 +70,19 @@ class AdminHomeScreen extends StatelessWidget {
       ),
       body: BlocProvider(
         create: (context) => AllMealsCubit()..allMeals(),
-        child: BlocConsumer<AllMealsCubit,AllMealsStates>(
-          listener: (context,state){},
-          builder:  (context,state){
+        child: BlocConsumer<AllMealsCubit, AllMealsStates>(
+          listener: (context, state) {
+
+          },
+          builder: (context, state) {
             List meals = AllMealsCubit.get(context).meals;
+            List mealsId = AllMealsCubit.get(context).mealsID;
             return Padding(
-              padding:  EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(16.0),
               child: ListView.builder(
                 itemBuilder: (context, position) {
                   return Padding(
-                    padding:  EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(8.0),
                     child: Card(
                       shape: BeveledRectangleBorder(
                         borderRadius: BorderRadius.circular(16.0),
@@ -120,7 +127,7 @@ class AdminHomeScreen extends StatelessWidget {
                             Center(
                               child: Image.network(
                                 // '${meals[position]['MealImageUrl']}',
-                                'https://cdn.sanity.io/images/lg38muzm/production/7385bd8a1262b50f88e0c7670a9927f7f476a027-1133x740.png?w=800&h=523&fit=crop',
+                                '${meals[position]['imageLink']}',
                                 height: 250,
                               ),
                             ),
@@ -130,7 +137,14 @@ class AdminHomeScreen extends StatelessWidget {
                             Center(
                                 child: defaultButton(
                                     function: () {
-                                      AllMealsCubit.get(context).deleteMeal(position);
+                                      // AllMealsCubit.get(context).deleteMealFromScreen(position);
+                                      if (mealsId != null) {
+                                        AllMealsCubit.get(context).deleteMeal(
+                                            documentId: mealsId,
+                                            index: position);
+                                        navigateAndFinish(context, AdminHomeScreen());
+                                      }
+
                                     },
                                     text: 'Delete Meal',
                                     background: Colors.red)),
@@ -146,7 +160,6 @@ class AdminHomeScreen extends StatelessWidget {
               ),
             );
           },
-
         ),
       ),
     );

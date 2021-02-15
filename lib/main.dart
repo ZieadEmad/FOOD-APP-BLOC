@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_project/admin/home_screen.dart';
 import 'package:food_project/admin/screens/add_meal/cubit/cubit.dart';
-import 'package:food_project/admin/screens/all_meals_cubit/cubit.dart';
+import 'package:food_project/layout/cubit/cubit.dart';
+import 'package:food_project/layout/layout_screen.dart';
 import 'package:food_project/screens/login/cubit/cubit.dart';
 import 'package:food_project/screens/sign_up/cubit/cubit.dart';
 import 'package:food_project/screens/welcome/welcome_screen.dart';
 import 'package:food_project/shared/network/local/local.dart';
 
-import 'layout/home_screen.dart';
+
 
 void main() async{
 
@@ -27,7 +28,7 @@ void main() async{
         widget = AdminHomeScreen();
       }
       else{
-        widget = HomeScreen() ;
+        widget = LayoutScreen() ;
       }
 
     }
@@ -63,9 +64,14 @@ class MyApp extends StatelessWidget {
           create: (context) => AddMealCubit(),
         ),
 
+        BlocProvider(
+          create: (context) => LayoutCubit(),
+        ),
+
 
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Food APP',
         theme: ThemeData(
           primaryColor: Colors.blueAccent,

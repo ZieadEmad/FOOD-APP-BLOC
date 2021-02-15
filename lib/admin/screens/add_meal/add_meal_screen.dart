@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_project/admin/home_screen.dart';
 import 'package:food_project/admin/screens/add_meal/cubit/cubit.dart';
 import 'package:food_project/admin/screens/add_meal/cubit/states.dart';
+import 'package:food_project/shared/colors/colors.dart';
 import 'package:food_project/shared/componentes/components.dart';
 import 'package:image_picker/image_picker.dart';
 class AddMealScreen extends StatefulWidget {
@@ -39,6 +40,9 @@ class _AddMealScreenState extends State<AddMealScreen> {
     });
   }
 
+  String dropdownValue = 'Appetizers';
+
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AddMealCubit,AddMealStates>(
@@ -52,7 +56,7 @@ class _AddMealScreenState extends State<AddMealScreen> {
         }
         if (state is AddMealStateSuccess) {
           print('SignUpStateSuccess');
-          return navigateTo(
+          return navigateAndFinish(
             context,
             AdminHomeScreen(),
           );
@@ -106,16 +110,39 @@ class _AddMealScreenState extends State<AddMealScreen> {
                     SizedBox(
                       height: 15,
                     ),
-                    defaultTextBox(
-                      title: "Category",
-                      hint: 'Enter Category',
-                      controller: categoryController,
-                      type: TextInputType.text,
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text('Choose Category',style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: defaultColor,
+                    ),),
+                    DropdownButton<String>(
+                      hint: Text("Category") ,
+                     style: TextStyle(
+                       fontSize: 25,
+                       color: Colors.black
+                     ),
+
+                      value: dropdownValue,
+                      onChanged: (String newValue) {
+                        setState(() {
+                          dropdownValue = newValue;
+                        });
+                      },
+                      items: <String>['Appetizers', 'ChickenSandwich', 'FamilyMeals',
+                        'BeefSandwish','Desserts','KidsMeals']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
                     ),
                     SizedBox(
-                      height: 40,
+                      height: 50,
                     ),
-
                     imageLink != ''
                         ? CircleAvatar(
                       radius: 80,
@@ -135,9 +162,7 @@ class _AddMealScreenState extends State<AddMealScreen> {
                       width: 150 ,
                     ),
 
-
                     SizedBox(height: 30,),
-
                     Padding(
                       padding: const EdgeInsets.only(left: 16,right: 16),
                       child: defaultButton(
@@ -145,22 +170,23 @@ class _AddMealScreenState extends State<AddMealScreen> {
                             String title= titleController.text ;
                             String des = desController.text;
                             String price= priceController.text ;
-                            String category = categoryController.text;
+                            String category = dropdownValue.toString();
                             if(title.isEmpty|| des.isEmpty|| price.isEmpty|| category.isEmpty|| imageLink =='')
                             {
                               showToast(text: 'please enter a valid data', error:  true );
                               return ;
                             }
                             //cubit
-                            AddMealCubit.get(context).addMeal(title: title , description: des,
-                                category: category,imageUrl: imageLink ,price: price);
+                            // AddMealCubit.get(context).addMeal(title: title , description: des,
+                            //     category: category,price: price);
+                            AddMealCubit.get(context).addMeal(imageUrl: image,title: title , description: des,
+                                category: category,price: price);
                           },
+
                           text: '+ Add Meal',
                           radius: 5
                       ),
                     ),
-
-
                   ],
                 ),
               ],
