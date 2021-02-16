@@ -43,12 +43,12 @@ class LayoutScreen extends StatelessWidget {
                   label: 'Cart',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(OMIcons.person),
-                  label: 'Profile',
+                  icon: Icon(OMIcons.favorite),
+                  label: 'Favorites',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(OMIcons.settings),
-                  label: 'Settings',
+                  icon: Icon(OMIcons.person),
+                  label: 'Profile',
                 ),
               ],
               onTap: (index) {

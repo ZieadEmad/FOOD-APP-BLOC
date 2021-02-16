@@ -326,7 +326,7 @@ Widget buildCardExt(title, price,dec,buttonFunction) => ExpansionTileCard(
     );
 
 
-Widget buildMealItems({imageUrl,title,price,dec,buttonFunction}) {
+Widget buildMealItems({imageUrl,title,price,dec,buttonFunction,favoritesOnPress,bool isRemove = false}) {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 20.0,),
     child: Container(
@@ -420,7 +420,19 @@ Widget buildMealItems({imageUrl,title,price,dec,buttonFunction}) {
            child: Image.network('$imageUrl'),
          ),
           SizedBox(height: 20,),
-          defaultButton(function: buttonFunction, text: 'Add To Cart',width: 160),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              defaultButton(function: buttonFunction , text: 'Add To Cart',width: 160),
+              SizedBox(width: 10,),
+              FlatButton(onPressed: favoritesOnPress , child: Column(
+                children: [
+                  Icon(isRemove ? Icons.favorite : Icons.favorite_border ),
+                  Text( isRemove ? 'Remove from Favorites' : 'Add To Favorites' ),
+                ],
+              ))
+            ],
+          ),
         ],
       ),
     ),

@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_project/admin/home_screen.dart';
-import 'file:///G:/Flutter_Pro/food_project/lib/screens/home/home_screen.dart';
+import 'package:food_project/layout/layout_screen.dart';
 import 'package:food_project/screens/login/cubit/cubit.dart';
 import 'package:food_project/screens/login/cubit/states.dart';
 import 'package:food_project/screens/sign_up/sign_up_screen.dart';
@@ -47,7 +47,7 @@ class LoginScreen extends StatelessWidget {
               }
               //cubit
               else{
-                navigateAndFinish(context ,HomeScreen());
+                navigateAndFinish(context ,LayoutScreen());
               }
 
             }

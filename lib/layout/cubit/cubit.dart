@@ -1,11 +1,10 @@
 
 
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_project/layout/cubit/states.dart';
 import 'file:///G:/Flutter_Pro/food_project/lib/screens/home/home_screen.dart';
-import 'package:food_project/screens/Settings/Settings_screen.dart';
 import 'package:food_project/screens/cart/cart_screen.dart';
+import 'package:food_project/screens/favorites/favorites_screen.dart';
 import 'package:food_project/screens/profile/profile_screen.dart';
 
 class LayoutCubit extends Cubit<LayoutStates> {
@@ -17,15 +16,15 @@ class LayoutCubit extends Cubit<LayoutStates> {
   var widget = [
     HomeScreen(),
     CartScreen(),
+    FavoritesScreen() ,
     ProfileScreen(),
-    SettingsScreen(),
   ];
 
   var title = [
     'Tasty Restaurant',
     'Your Cart',
-    'Your Profile',
-    'Settings'
+    'Favorites',
+    'Your Profile'
   ];
 
   int currentIndex = 0 ;
