@@ -43,9 +43,43 @@ class CartCubit extends Cubit<CartStates> {
     FirebaseFirestore.instance.collection('Cart').get().then((value){
       emit(ShowCartStateSuccess());
       print('$value');
-      cartMeals=value.docs;
       for(var doc in value.docs ) {
-        cartMealsId.add(doc.id);
+        if(doc['UserId']==getToken().toString()){
+          cartMeals.add(doc.data());
+        }
+      }
+     // cartMeals=value.docs;
+      for(var doc in value.docs ) {
+        if(doc['UserId']==getToken().toString()){
+          cartMealsId.add(doc.id);
+        }
+       // cartMealsId.add(doc.id);
+      }
+      print('========$cartMealsId');
+    }).catchError((e){
+      emit(ShowCartStateError(e));
+    });
+  }
+
+  removeCartItems(){
+    emit(ShowCartStateLoading());
+    FirebaseFirestore.instance.collection('Cart').get().then((value){
+      emit(ShowCartStateSuccess());
+      print('$value');
+      for(var doc in value.docs ) {
+        if(doc['UserId']==getToken().toString()){
+          FirebaseFirestore.instance.collection('Cart')
+              .doc(doc.id)
+              .delete();
+          cartMeals.remove(doc.data());
+        }
+      }
+      // cartMeals=value.docs;
+      for(var doc in value.docs ) {
+        if(doc['UserId']==getToken().toString()){
+          cartMealsId.remove(doc.id);
+        }
+        // cartMealsId.add(doc.id);
       }
       print('========$cartMealsId');
     }).catchError((e){

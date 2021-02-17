@@ -45,9 +45,16 @@ class FavoritesCubit extends Cubit<FavoritesStates> {
     FirebaseFirestore.instance.collection('Favorites').get().then((value){
       emit(ShowFavoritesStateSuccess());
       print('$value');
-      favoritesMeals=value.docs;
       for(var doc in value.docs ) {
-        favoritesId.add(doc.id);
+        if(doc['UserId']==getToken().toString()){
+          favoritesMeals.add(doc.data());
+        }
+      }
+     // favoritesMeals=value.docs;
+      for(var doc in value.docs ) {
+        if(doc['UserId']==getToken().toString()){
+          favoritesId.add(doc.id);
+        }
       }
       print('========$favoritesId');
     }).catchError((e){

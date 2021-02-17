@@ -52,39 +52,43 @@ class FavoritesScreen extends StatelessWidget {
                listener: (context,state){},
                builder: (context,state){
                  return Scaffold(
-                   body: Column(
-                       children: [
-                         SizedBox(height: 20,),
-                         Expanded(
-                           child: ListView.separated(
-                             physics: BouncingScrollPhysics(),
-                             padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
-                             itemBuilder: (context, index) =>
-                                 buildMealItems(
-                                   imageUrl: favoritesMeals[index]['imageLink'].toString(),
-                                   price: favoritesMeals[index]['MealPrice'].toString(),
-                                   title: favoritesMeals[index]['MealTitle'].toString(),
-                                   dec: favoritesMeals[index]['MealDescription'].toString(),
-                                   buttonFunction: (){
-                                     CartCubit.get(context).addCart(favoritesMeals[index]['MealId']);
-                                     navigateAndFinish(context, LayoutScreen());
+                   body: ConditionalBuilder(
+                     condition: favoritesMeals.length != 0,
+                     builder: (context)=> Column(
+                         children: [
+                           SizedBox(height: 20,),
+                           Expanded(
+                             child: ListView.separated(
+                               physics: BouncingScrollPhysics(),
+                               padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                               itemBuilder: (context, index) =>
+                                   buildMealItems(
+                                     imageUrl: favoritesMeals[index]['imageLink'].toString(),
+                                     price: favoritesMeals[index]['MealPrice'].toString(),
+                                     title: favoritesMeals[index]['MealTitle'].toString(),
+                                     dec: favoritesMeals[index]['MealDescription'].toString(),
+                                     buttonFunction: (){
+                                       CartCubit.get(context).addCart(favoritesMeals[index]['MealId']);
+                                       navigateAndFinish(context, LayoutScreen());
                                      },
-                                   isRemove: true,
-                                   favoritesOnPress: (){
-                                     FavoritesCubit.get(context).deleteMeal(documentId:favoritesId ,index: index);
-                                     navigateAndFinish(context, LayoutScreen());
-                                   },
-                                 ),
-                             separatorBuilder: (context, index) => SizedBox(
-                               height: 25.0,
+                                     isRemove: true,
+                                     favoritesOnPress: (){
+                                       FavoritesCubit.get(context).deleteMeal(documentId:favoritesId ,index: index);
+                                       navigateAndFinish(context, LayoutScreen());
+                                     },
+                                   ),
+                               separatorBuilder: (context, index) => SizedBox(
+                                 height: 25.0,
+                               ),
+                               itemCount: favoritesMeals.length,
                              ),
-                             itemCount: favoritesMeals.length,
                            ),
-                         ),
-                         SizedBox(
-                           height: 20.0,
-                         ),
-                       ]),
+                           SizedBox(
+                             height: 20.0,
+                           ),
+                         ]),
+                    fallback: (context)=> Center(child: Text('Favorites is Empty...',style: TextStyle(fontSize: 20),)),
+                   ),
                  ) ;
                },
            ),

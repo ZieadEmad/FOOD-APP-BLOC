@@ -2,7 +2,17 @@ import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:food_project/admin/screens/add_meal/add_meal_screen.dart';
+import 'package:food_project/admin/screens/categories/appetizers_admin/appetizers_screen.dart';
+import 'package:food_project/admin/screens/categories/beef_admin/beef_screen.dart';
+import 'package:food_project/admin/screens/categories/chicken_admin/chicken_screen.dart';
+import 'package:food_project/admin/screens/categories/desserts_admin/desserts_screen.dart';
+import 'package:food_project/admin/screens/categories/family_admin/family_screen.dart';
+import 'package:food_project/admin/screens/categories/kids_admin/kids_screen.dart';
+import 'package:food_project/admin/screens/orders/orders.dart';
+import 'package:food_project/screens/welcome/welcome_screen.dart';
 import 'package:food_project/shared/colors/colors.dart';
+import 'package:food_project/shared/network/local/local.dart';
 
 Widget logo() => Image(
       image: AssetImage('assets/images/fast-food.png'),
@@ -105,14 +115,13 @@ void showToast({@required text, @required error}) => Fluttertoast.showToast(
     msg: text.toString(),
     toastLength: Toast.LENGTH_SHORT,
     gravity: ToastGravity.BOTTOM,
-    timeInSecForIosWeb: 1,
+    timeInSecForIosWeb: 10,
     backgroundColor: error ? Colors.red : Colors.green,
     textColor: Colors.white,
     fontSize: 16.0);
 
-void buildProgress({context, text, bool error = false}) => showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
+void buildProgress({context, text, bool error = false})
+   => showDialog(context: context, builder: (context) => AlertDialog(
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -136,8 +145,63 @@ void buildProgress({context, text, bool error = false}) => showDialog(
               ),
           ],
         ),
+      ),);
+
+
+class NavMenuItem  {
+  String title ;
+  Function rote;
+  NavMenuItem(this.title,this.rote);
+
+}
+Widget buildAdminDrawer (ctx){
+  List<NavMenuItem> navigationMenu =[
+    NavMenuItem('ADD NEW MEAL', (){return  AddMealScreen();} ),
+    NavMenuItem('Orders', (){return  AdminOrderScreen();} ),
+    NavMenuItem('Appetizers', (){return AppetizersAdminScreen();} ),
+    NavMenuItem('Beef Sandwich', (){return BeefAdminScreen();} ),
+    NavMenuItem('Chicken Sandwich', (){return ChickenAdminScreen();} ),
+    NavMenuItem('Desserts', (){return DessertsAdminScreen();} ),
+    NavMenuItem('Family Meals', (){return FamilyAdminScreen();} ),
+    NavMenuItem('Kids Meals', (){return KidsAdminScreen();} ),
+    NavMenuItem('LogOut', (){removeToken(); return WelcomeScreen();}),
+  ];
+  return Drawer(
+    child: Padding(
+      padding:  EdgeInsets.only(top:75,left: 10,right: 8 ),
+      child: ListView.builder(
+        itemCount: navigationMenu.length ,
+        itemBuilder: (context,index){
+          return Padding(
+            padding: EdgeInsets.all(6),
+            child: ListTile(
+              title: Text(
+                navigationMenu[index].title,
+                style: TextStyle(
+                    color: Colors.grey.shade700,
+                    fontSize: 22
+                ),
+              ),
+
+              trailing: Icon(
+                Icons.chevron_right,
+                color: Colors.grey.shade400,
+              ),
+              onTap: (){
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context){
+                  return  navigationMenu[index].rote();}),
+
+                );
+              },
+
+            ),
+          );
+        },
       ),
-    );
+    ),
+  );
+}
 
 Widget buildCategoryItem(imagePath, title, context, function) => GestureDetector(
       onTap: function,
@@ -326,8 +390,18 @@ Widget buildCardExt(title, price,dec,buttonFunction) => ExpansionTileCard(
     );
 
 
-Widget buildMealItems({imageUrl,title,price,dec,buttonFunction,favoritesOnPress,bool isRemove = false}) {
-  return Padding(
+Widget buildMealItems({
+  imageUrl,
+  title,
+  price,
+  dec,
+  buttonFunction,
+  favoritesOnPress,
+  bool isRemove = false,
+  isAdmin = false ,
+  buttonTitle = 'Add To Cart',
+  buttonColor = defaultColor ,
+}) => Padding(
     padding: EdgeInsets.symmetric(horizontal: 20.0,),
     child: Container(
       decoration: BoxDecoration(
@@ -423,18 +497,19 @@ Widget buildMealItems({imageUrl,title,price,dec,buttonFunction,favoritesOnPress,
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              defaultButton(function: buttonFunction , text: 'Add To Cart',width: 160),
-              SizedBox(width: 10,),
-              FlatButton(onPressed: favoritesOnPress , child: Column(
-                children: [
-                  Icon(isRemove ? Icons.favorite : Icons.favorite_border ),
-                  Text( isRemove ? 'Remove from Favorites' : 'Add To Favorites' ),
-                ],
-              ))
+              defaultButton(function: buttonFunction , text: '$buttonTitle',width: 160,background: buttonColor),
+              isAdmin ?  SizedBox(width: 1,) : SizedBox(width: 10,),
+              isAdmin ?  SizedBox(width: 1,) : FlatButton(onPressed: favoritesOnPress , child: Column(
+                  children: [
+
+                    Icon(isRemove ? Icons.favorite : Icons.favorite_border ),
+                    Text( isRemove ? 'Remove from Favorites' : 'Add To Favorites' ),
+                  ],
+                ))
+
             ],
           ),
         ],
       ),
     ),
   );
-}

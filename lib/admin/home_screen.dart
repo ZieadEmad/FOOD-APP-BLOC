@@ -2,78 +2,69 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_project/admin/all_meals_cubit/cubit.dart';
 import 'package:food_project/admin/all_meals_cubit/states.dart';
-import 'package:food_project/admin/screens/add_meal/add_meal_screen.dart';
-import 'package:food_project/screens/welcome/welcome_screen.dart';
 import 'package:food_project/shared/componentes/components.dart';
-import 'package:food_project/shared/network/local/local.dart';
 
-class AdminHomeScreen extends StatefulWidget {
-  @override
-  _AdminHomeScreenState createState() => _AdminHomeScreenState();
-}
-
-class _AdminHomeScreenState extends State<AdminHomeScreen> {
+class AdminHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Your Meals'),
-        actions: [
-          FlatButton(
-              onPressed: () {
-                navigateTo(context, AddMealScreen());
-              },
-              child: Center(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 4,
-                    ),
-                    Icon(
-                      Icons.add,
-                      color: Colors.green[800],
-                      size: 25,
-                    ),
-                    SizedBox(
-                      height: 4,
-                    ),
-                    Text(
-                      'ADD NEW MEALS',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
-              )),
-          FlatButton(
-              onPressed: () {
-                removeToken();
-                navigateAndFinish(context, WelcomeScreen());
-              },
-              child: Center(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 4,
-                    ),
-                    Icon(Icons.logout, color: Colors.black),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      'LOG OUT',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
-              )),
-        ],
+        title: Text('ALL Meals'),
+        // actions: [
+        //   FlatButton(
+        //       onPressed: () {
+        //         navigateTo(context, AddMealScreen());
+        //       },
+        //       child: Center(
+        //         child: Column(
+        //           children: [
+        //             SizedBox(
+        //               height: 4,
+        //             ),
+        //             Icon(
+        //               Icons.add,
+        //               color: Colors.green[800],
+        //               size: 25,
+        //             ),
+        //             SizedBox(
+        //               height: 4,
+        //             ),
+        //             Text(
+        //               'ADD NEW MEALS',
+        //               style: TextStyle(color: Colors.white),
+        //             ),
+        //           ],
+        //         ),
+        //       )),
+        //   // FlatButton(
+        //   //     onPressed: () {
+        //   //       removeToken();
+        //   //       navigateAndFinish(context, WelcomeScreen());
+        //   //     },
+        //   //     child: Center(
+        //   //       child: Column(
+        //   //         children: [
+        //   //           SizedBox(
+        //   //             height: 4,
+        //   //           ),
+        //   //           Icon(Icons.logout, color: Colors.black),
+        //   //           SizedBox(
+        //   //             height: 5,
+        //   //           ),
+        //   //           Text(
+        //   //             'LOG OUT',
+        //   //             style: TextStyle(color: Colors.white),
+        //   //           ),
+        //   //         ],
+        //   //       ),
+        //   //     )),
+        // ],
       ),
+      drawer: buildAdminDrawer(context),
       body: BlocProvider(
         create: (context) => AllMealsCubit()..allMeals(),
         child: BlocConsumer<AllMealsCubit, AllMealsStates>(
-          listener: (context, state) {
-
-          },
+          listener: (context, state) {},
           builder: (context, state) {
             List meals = AllMealsCubit.get(context).meals;
             List mealsId = AllMealsCubit.get(context).mealsID;
@@ -165,3 +156,4 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
     );
   }
 }
+

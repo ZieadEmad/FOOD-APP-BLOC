@@ -73,7 +73,26 @@ class _AddMealScreenState extends State<AddMealScreen> {
       },
       builder: (context,state){
         return Scaffold(
-          appBar: AppBar(title: Text('ADD YOUR MEAL'),),
+          appBar: AppBar(
+            title: Text('ADD YOUR MEAL'),
+            actions: [
+            SizedBox(width: 10,),
+            InkWell(
+            onTap: (){navigateAndFinish(context, AdminHomeScreen());},
+        child: Center(
+        child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+        Icon(Icons.home,color: Colors.white,),
+        Text('HOME'),
+        ],
+        ),
+        ),
+            ),
+              SizedBox(width: 10,),
+             ]
+          ),
+          drawer: buildAdminDrawer(context),
           body: Padding(
             padding:  EdgeInsets.all(16.0),
             child: ListView(
