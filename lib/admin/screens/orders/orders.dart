@@ -131,20 +131,18 @@ class AdminOrderScreen extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   defaultButton(function: (){
+                                    ShowAdminOrderCubit.get(context).canUserDeleteOrder(cant: false);
                                     //tell user message by user id meal is Accepted
-                                  },
-                                      text: 'Accept',width: 100),
+                                  }, text: 'Accept',width: 100),
 
                                   defaultButton(function: (){
                                     //tell user message by user id meal is
                                     // finished and delivery man take it to him soon
-                                  },
-                                      text: 'finish',background: Colors.green,width: 100),
+                                  }, text: 'finish',background: Colors.green,width: 100),
 
                                   defaultButton(function: (){
                                     ShowAdminOrderCubit.get(context).deleteMeal(documentId:adminOrderMealsId,index: index);
-                                  },
-                                      text: 'delete',background: Colors.red,width: 100),
+                                  }, text: 'delete',background: Colors.red,width: 100),
                                 ],
                               ),
 

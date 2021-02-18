@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_project/screens/login/cubit/states.dart';
 
@@ -6,6 +7,10 @@ class LoginCubit extends Cubit<LoginStates>
 {
   LoginCubit() : super(LoginStatesInitial());
   static LoginCubit get(context) => BlocProvider.of(context);
+
+
+  FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
 
   login({email, password}) async{
 
@@ -54,4 +59,10 @@ class LoginCubit extends Cubit<LoginStates>
     //   emit(SignUpStateError(e.toString()));
     // });
   }
-}
+
+
+  recoveryPassword(String email) => _firebaseAuth.sendPasswordResetEmail(email: email);
+
+
+  }
+

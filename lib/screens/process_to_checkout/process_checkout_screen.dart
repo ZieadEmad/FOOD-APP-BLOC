@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_project/screens/cart/cubit/cubit.dart';
@@ -36,7 +37,7 @@ class ProcessToCheckOutScreen extends StatelessWidget {
    }
  }
 
- var nameController = TextEditingController();
+
  var phoneController = TextEditingController();
  var areaController = TextEditingController();
  var streetNameController = TextEditingController();
@@ -44,6 +45,7 @@ class ProcessToCheckOutScreen extends StatelessWidget {
  var floorController = TextEditingController();
  var apartmentController = TextEditingController();
  var noteController = TextEditingController();
+
 
 
   @override
@@ -109,12 +111,6 @@ class ProcessToCheckOutScreen extends StatelessWidget {
                          padding: const EdgeInsets.all(16.0),
                          child: ListView(
                            children: [
-                             defaultTextBox(
-                               title: "Full Name",
-                               hint: 'Enter your Name With Out Space',
-                               controller: nameController,
-                               type: TextInputType.text,
-                             ),
                              SizedBox(height: 20,),
                              defaultTextBox(
                                title: "Phone Number",
@@ -186,7 +182,8 @@ class ProcessToCheckOutScreen extends StatelessWidget {
                              padding: const EdgeInsets.only(left: 30,right: 30,bottom: 15,top: 5),
                              child: defaultButton(
                                function: () {
-                                 String name= nameController.text ;
+                                 String userName = FirebaseAuth.instance.currentUser.displayName;
+                                 String name= userName.toString() ;
                                  String phone = phoneController.text;
                                  String area = areaController.text;
                                  String streetName= streetNameController.text ;

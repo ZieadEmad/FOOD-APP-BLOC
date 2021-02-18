@@ -6,8 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_project/admin/screens/add_meal/cubit/states.dart';
 
-class AddMealCubit extends Cubit<AddMealStates>
-{
+class AddMealCubit extends Cubit<AddMealStates> {
   String imagelink = ' ';
 
   AddMealCubit() : super(AddMealStateInitial());

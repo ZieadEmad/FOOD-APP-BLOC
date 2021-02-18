@@ -14,6 +14,7 @@ class ShowAdminOrderCubit extends Cubit<ShowAdminOrderStates> {
 
   List adminOrderMeals = [];
   List adminOrderMealsId = [];
+  bool canDelete ;
 
   showOrdersUser(){
     emit(ShowAdminOrderStateLoading());
@@ -33,6 +34,14 @@ class ShowAdminOrderCubit extends Cubit<ShowAdminOrderStates> {
     });
   }
 
+  canUserDeleteOrder({bool cant= true}){
+    if(cant==true){
+      canDelete = true;
+    }
+  else{
+      canDelete = false;
+    }
+  }
 
   Future<void> deleteMeal({documentId,index}) async {
     return await FirebaseFirestore.instance.collection('Orders')

@@ -298,31 +298,6 @@ class HomeScreen extends StatelessWidget {
                           SizedBox(
                             height: 20,
                           ),
-                          Center(
-                            child: FlatButton(
-                              onPressed: () {
-                                removeToken();
-                                navigateAndFinish(context, WelcomeScreen());
-                              },
-                              child: Center(
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      height: 4,
-                                    ),
-                                    Icon(Icons.logout, color: Colors.black),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    Text(
-                                      'LOG OUT',
-                                      style: TextStyle(color: Colors.black),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
                           SizedBox(
                             height: 20,
                           ),
@@ -340,30 +315,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-// appBar: AppBar(
-//   title: Text('HOME PAGE'),
-//   actions: [
-//     FlatButton(
-//         onPressed: () {
-//           removeToken();
-//           navigateAndFinish(context, WelcomeScreen());
-//         },
-//         child: Center(
-//           child: Column(
-//             children: [
-//               SizedBox(
-//                 height: 4,
-//               ),
-//               Icon(Icons.logout, color: Colors.black),
-//               SizedBox(
-//                 height: 5,
-//               ),
-//               Text(
-//                 'LOG OUT',
-//                 style: TextStyle(color: Colors.white),
-//               ),
-//             ],
-//           ),
-//         )),
-//   ],
-// ),

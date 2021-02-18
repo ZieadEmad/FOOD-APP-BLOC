@@ -36,7 +36,7 @@ class ShowOrderCubit extends Cubit<ShowOrderStates> {
 
 
   Future<void> deleteMeal({documentId,index}) async {
-    return await FirebaseFirestore.instance.collection('Cart')
+    return await FirebaseFirestore.instance.collection('Orders')
         .doc(documentId[index].toString())
         .delete();
   }

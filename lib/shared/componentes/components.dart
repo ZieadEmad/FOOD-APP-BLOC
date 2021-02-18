@@ -513,3 +513,47 @@ Widget buildMealItems({
       ),
     ),
   );
+
+
+Widget buildProfileItem({@required title, @required Widget shape,@required function,color = defaultColor, icon=30.0}) => Expanded(
+  child: GestureDetector(
+    onTap: function,
+    child: Container(
+      height: 140.0,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(
+          15.0,
+        ),
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 10,
+            blurRadius: 15,
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CircleAvatar(
+            radius: icon,
+            child: shape,
+            backgroundColor: color ,
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          Text(
+            title.toString(),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              color: Colors.black87,
+            ),
+          ),
+        ],
+      ),
+    ),
+  ),
+);

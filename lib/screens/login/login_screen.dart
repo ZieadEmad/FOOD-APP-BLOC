@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_project/admin/home_screen.dart';
 import 'package:food_project/layout/layout_screen.dart';
+import 'package:food_project/screens/forgot_password/forgot_password_screen.dart';
 import 'package:food_project/screens/login/cubit/cubit.dart';
 import 'package:food_project/screens/login/cubit/states.dart';
 import 'package:food_project/screens/sign_up/sign_up_screen.dart';
@@ -140,7 +141,7 @@ class LoginScreen extends StatelessWidget {
                   SizedBox(height: 20,),
 
                   FlatButton(
-                    onPressed: () {},
+                    onPressed: () {navigateTo(context, ForgotPasswordScreen());},
                     child: Text('Forgot your password ?'),
                   )
                 ],

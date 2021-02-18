@@ -11,8 +11,6 @@ import 'package:food_project/shared/network/local/local.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class WelcomeScreen extends StatelessWidget {
-
-
   GoogleSignIn googleSignIn = GoogleSignIn(
     scopes:
     [
@@ -29,16 +27,7 @@ class WelcomeScreen extends StatelessWidget {
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Center(
-              //   child: Container(
-              //     decoration: BoxDecoration(
-              //       image: DecorationImage(
-              //         image: AssetImage('assets/images/news_logo.png'),
-              //         fit: BoxFit.cover
-              //       )
-              //     ),
-              //   ),
-              // ),
+
 
               logo(),
               SizedBox(height: 50,),
@@ -75,21 +64,21 @@ class WelcomeScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  InkWell(
-                    child: CircleAvatar(
-                      backgroundColor: defaultColor,
-                      radius: 20,
-                      child: Image(
-                        image: AssetImage('assets/images/facebook.png'),
-                        height: 23,
-                        width: 23,
-                        color: Colors.white,
-                      ),
-                    ),
-                    onTap: (){},
-                  ),
+                  // InkWell(
+                  //   child: CircleAvatar(
+                  //     backgroundColor: defaultColor,
+                  //     radius: 20,
+                  //     child: Image(
+                  //       image: AssetImage('assets/images/facebook.png'),
+                  //       height: 23,
+                  //       width: 23,
+                  //       color: Colors.white,
+                  //     ),
+                  //   ),
+                  //   onTap: (){},
+                  // ),
 
-                  SizedBox(width: 20,),
+                  // SizedBox(width: 20,),
                   InkWell(
                       child: CircleAvatar(
                         backgroundColor: defaultColor,
@@ -148,7 +137,7 @@ class WelcomeScreen extends StatelessWidget {
           .then((value) {
         print(value.user.uid);
         //print('token-------${googleSignInAuthentication.accessToken}');
-        saveToken(googleSignInAuthentication.accessToken).then((value)
+        saveToken(value.user.uid).then((value)
         {
           if(value){
             showToast(text:'success save token', error: false);
@@ -168,4 +157,8 @@ class WelcomeScreen extends StatelessWidget {
       print(e.toString());
     });
   }
-}
+
+  }
+
+
+

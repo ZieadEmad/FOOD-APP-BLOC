@@ -12,3 +12,14 @@ class AllMealsStateError extends AllMealsStates
 
   AllMealsStateError(this.error);
 }
+
+class EditMealsStateLoading extends AllMealsStates {}
+
+class EditMealsStateSuccess extends AllMealsStates {}
+
+class EditMealsStateError extends AllMealsStates
+{
+  final error;
+
+  EditMealsStateError(this.error);
+}

@@ -28,6 +28,25 @@ allMeals(){
 }
 
 
+editMeal({documentId,index,mealDec,mealPrice,mealTitle})async{
+      emit(EditMealsStateLoading());
+      return await FirebaseFirestore.instance.collection('Meals')
+          .doc(documentId[index].toString())
+          .update({
+
+        'MealDescription':'$mealDec',
+        'MealPrice':'$mealPrice',
+        'MealTitle':'$mealTitle',
+
+      }).then((value) {
+
+      emit(EditMealsStateSuccess());
+
+      }).catchError((e){
+        emit(EditMealsStateError(e));
+      });
+}
+
  Future<void> deleteMeal({documentId,index}) async {
   return await FirebaseFirestore.instance.collection('Meals')
       .doc(documentId[index].toString())

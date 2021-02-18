@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_project/admin/all_meals_cubit/cubit.dart';
 import 'package:food_project/admin/all_meals_cubit/states.dart';
+import 'package:food_project/admin/screens/edit_meal/edit_meal_screen.dart';
 import 'package:food_project/shared/componentes/components.dart';
 
 class AdminHomeScreen extends StatelessWidget {
@@ -139,8 +140,25 @@ class AdminHomeScreen extends StatelessWidget {
                                     },
                                     text: 'Delete Meal',
                                     background: Colors.red)),
-
-                            //   Image.file(File('')),
+                            SizedBox(
+                              height: 6,
+                            ),
+                            Center(
+                                child: defaultButton(
+                                    function: () {
+                                      if (mealsId != null) {
+                                        navigateAndFinish(
+                                            context,
+                                            EditMealScreen(
+                                              index: position,
+                                              meals: meals,
+                                              mealsId: mealsId,
+                                            ),
+                                        );
+                                      }
+                                    },
+                                    text: 'Edit Meal',
+                                    background: Colors.green)),
                           ],
                         ),
                       ),
