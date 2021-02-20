@@ -18,9 +18,10 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  var widget;
-
   FirebaseMessaging().subscribeToTopic('TastyUsers');
+
+
+  var widget;
 
   await initpref().then((value)
   {

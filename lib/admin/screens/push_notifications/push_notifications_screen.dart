@@ -135,12 +135,11 @@ class _PushNotificationsScreenState extends State<PushNotificationsScreen> {
                               if(massage.isEmpty&& imageLink.isEmpty){
                                 showToast(text: 'Please Enter Full Data And Choose photo' , error: true);
                               }
-                              else{
+                              else {
                                 NotificationCubit.get(context).sendNotification(
                                   image: image,
                                   msgBody: massage,
                                 );
-
                               }
 
                            },

@@ -30,6 +30,7 @@ class AddOrderCubit extends Cubit<OrderStates> {
       'UserApartmentNumber': '${apartment.toString()}',
       'UserNote': '${note.toString()}',
       'UserId': '${getToken().toString()}',
+      'UserToken': '${getUserToken().toString()}',
       'UserOrder':'${orderName.toString()}',
       'UserTotalPrice': '${totalPrice.toString()}',
       'Date' : '${formatted.toString()}',

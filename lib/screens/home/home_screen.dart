@@ -1,4 +1,5 @@
 import 'package:conditional_builder/conditional_builder.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +17,35 @@ import 'package:food_project/screens/welcome/welcome_screen.dart';
 import 'package:food_project/shared/componentes/components.dart';
 import 'package:food_project/shared/network/local/local.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+
+
+
+  FirebaseMessaging firebaseMessaging = FirebaseMessaging();
+  String token ;
+
+  @override
+  void initState() {
+    super.initState();
+    firebaseCloudMessage();
+  }
+
+  void firebaseCloudMessage(){
+    firebaseMessaging.getToken().then((value) {
+      print('token==========$value');
+      token=value.toString();
+      setState(() {
+        saveUserToken(token.toString());
+      });
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(

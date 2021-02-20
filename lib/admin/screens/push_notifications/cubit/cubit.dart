@@ -24,7 +24,7 @@ class NotificationCubit extends Cubit<NotificationsStates> {
         .putFile(image)
         .then((value) {
       value.ref.getDownloadURL().then((value) async {
-        print('${value.toString()}');
+       // print('${value.toString()}');
         imageLink = '${value.toString()}';
         var model = {
           "to": "/topics/TastyUsers",
@@ -49,7 +49,7 @@ class NotificationCubit extends Cubit<NotificationsStates> {
             "id": "yyyyyy",
           }
         };
-        return await DioHelper.postNotification(
+         await DioHelper.postNotification(
           path: 'fcm/send',
           data: jsonEncode(model),
         ).then((value) {
@@ -65,6 +65,8 @@ class NotificationCubit extends Cubit<NotificationsStates> {
 
 
 
-
-
 }
+
+
+
+
