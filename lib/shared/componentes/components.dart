@@ -10,6 +10,7 @@ import 'package:food_project/admin/screens/categories/desserts_admin/desserts_sc
 import 'package:food_project/admin/screens/categories/family_admin/family_screen.dart';
 import 'package:food_project/admin/screens/categories/kids_admin/kids_screen.dart';
 import 'package:food_project/admin/screens/orders/orders.dart';
+import 'package:food_project/admin/screens/push_notifications/push_notifications_screen.dart';
 import 'package:food_project/screens/welcome/welcome_screen.dart';
 import 'package:food_project/shared/colors/colors.dart';
 import 'package:food_project/shared/network/local/local.dart';
@@ -157,6 +158,7 @@ class NavMenuItem  {
 Widget buildAdminDrawer (ctx){
   List<NavMenuItem> navigationMenu =[
     NavMenuItem('ADD NEW MEAL', (){return  AddMealScreen();} ),
+    NavMenuItem('Push Notifications', (){return  PushNotificationsScreen();} ),
     NavMenuItem('Orders', (){return  AdminOrderScreen();} ),
     NavMenuItem('Appetizers', (){return AppetizersAdminScreen();} ),
     NavMenuItem('Beef Sandwich', (){return BeefAdminScreen();} ),
@@ -401,6 +403,9 @@ Widget buildMealItems({
   isAdmin = false ,
   buttonTitle = 'Add To Cart',
   buttonColor = defaultColor ,
+  buttonTitle2 ,
+  buttonColor2  ,
+  buttonFunction2,
 }) => Padding(
     padding: EdgeInsets.symmetric(horizontal: 20.0,),
     child: Container(
@@ -501,12 +506,12 @@ Widget buildMealItems({
               isAdmin ?  SizedBox(width: 1,) : SizedBox(width: 10,),
               isAdmin ?  SizedBox(width: 1,) : FlatButton(onPressed: favoritesOnPress , child: Column(
                   children: [
-
                     Icon(isRemove ? Icons.favorite : Icons.favorite_border ),
                     Text( isRemove ? 'Remove from Favorites' : 'Add To Favorites' ),
                   ],
-                ))
-
+                )),
+              isAdmin ?  SizedBox(width: 10,) : SizedBox(width: 1,),
+              isAdmin ?   defaultButton(function: buttonFunction2 , text: '$buttonTitle2',width: 160,background: buttonColor2) : SizedBox(width: 1,),
             ],
           ),
         ],
@@ -515,7 +520,13 @@ Widget buildMealItems({
   );
 
 
-Widget buildProfileItem({@required title, @required Widget shape,@required function,color = defaultColor, icon=30.0}) => Expanded(
+Widget buildProfileItem({
+  @required title,
+  @required Widget shape,
+  @required function,
+  color = defaultColor,
+  icon=30.0,
+}) => Expanded(
   child: GestureDetector(
     onTap: function,
     child: Container(

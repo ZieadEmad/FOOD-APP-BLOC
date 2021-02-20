@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_project/admin/all_meals_cubit/cubit.dart';
 import 'package:food_project/admin/all_meals_cubit/states.dart';
 import 'package:food_project/admin/home_screen.dart';
+import 'package:food_project/admin/screens/edit_meal/edit_meal_screen.dart';
 import 'package:food_project/screens/categories/kids/cubit/cubit.dart';
 import 'package:food_project/screens/categories/kids/cubit/states.dart';
 import 'package:food_project/shared/componentes/components.dart';
@@ -91,7 +92,13 @@ class KidsAdminScreen extends StatelessWidget {
                                             navigateTo(context,KidsAdminScreen());
                                           }
                                         },
-                                        isAdmin: true
+                                        isAdmin: true,
+                                        buttonColor2: Colors.green,
+                                        buttonTitle2: 'Edit Meal',
+                                        buttonFunction2: (){navigateAndFinish(context, EditMealScreen(index: index,
+                                          meals: kidsMeals,
+                                          mealsId: kidsMealsId,
+                                        ),);}
                                     ),
                                 separatorBuilder: (context, index) => SizedBox(
                                   height: 25.0,

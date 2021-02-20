@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_project/admin/home_screen.dart';
@@ -17,8 +18,9 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-
   var widget;
+
+  FirebaseMessaging().subscribeToTopic('TastyUsers');
 
   await initpref().then((value)
   {
@@ -43,6 +45,7 @@ void main() async{
 }
 
 class MyApp extends StatelessWidget {
+
   var widget;
 
   MyApp(this.widget);
