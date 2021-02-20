@@ -42,6 +42,7 @@ class BeefScreen extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(width: 10,),
         ],
       ),
       body: MultiBlocProvider(

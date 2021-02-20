@@ -69,11 +69,13 @@ class FavoritesScreen extends StatelessWidget {
                                      dec: favoritesMeals[index]['MealDescription'].toString(),
                                      buttonFunction: (){
                                        CartCubit.get(context).addCart(favoritesMeals[index]['MealId']);
+                                       showToast(text: 'item Added Successfully', error: false);
                                        navigateAndFinish(context, LayoutScreen());
                                      },
                                      isRemove: true,
                                      favoritesOnPress: (){
                                        FavoritesCubit.get(context).deleteMeal(documentId:favoritesId ,index: index);
+                                       showToast(text: 'item Removed', error: false);
                                        navigateAndFinish(context, LayoutScreen());
                                      },
                                    ),

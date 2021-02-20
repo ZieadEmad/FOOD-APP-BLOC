@@ -17,7 +17,7 @@ class FamilyScreen extends StatelessWidget {
       appBar: AppBar(title: Text('Family Meals'),
         actions: [
           SizedBox(width: 10,),
-      InkWell(
+          InkWell(
         onTap: (){navigateTo(context, LayoutScreen());},
         child: Center(
           child: Column(
@@ -43,6 +43,7 @@ class FamilyScreen extends StatelessWidget {
           ),
         ),
       ),
+          SizedBox(width: 10,),
       ],
       ),
       body: MultiBlocProvider(

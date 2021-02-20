@@ -14,7 +14,7 @@ class BeefAdminScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Appetizers'),
+      appBar: AppBar(title: Text('Beef Sandwich'),
         actions: [
           SizedBox(width: 10,),
           InkWell(

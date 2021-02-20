@@ -28,6 +28,7 @@ void main() async{
     if (getToken() != null && getToken().length > 0)
     {
       if(getToken()=='rMsp0UG3VnUb8KVMeNoRgHMK7em2'){
+        FirebaseMessaging().subscribeToTopic('TastyAdmin');
         widget = AdminHomeScreen();
       }
       else{
@@ -76,7 +77,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Food APP',
+        title: 'Tasty',
         theme: ThemeData(
           primaryColor: Colors.blueAccent,
           accentColor: Colors.orange,

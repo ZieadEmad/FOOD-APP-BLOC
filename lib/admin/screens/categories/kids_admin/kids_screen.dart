@@ -14,7 +14,7 @@ class KidsAdminScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Appetizers'),
+      appBar: AppBar(title: Text('Kids Meals'),
         actions: [
           SizedBox(width: 10,),
           InkWell(

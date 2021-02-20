@@ -28,6 +28,7 @@ class AppetizersScreen extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(width: 10,),
         ],
       ),
       body: MultiBlocProvider(

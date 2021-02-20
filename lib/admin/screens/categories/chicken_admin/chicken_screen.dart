@@ -16,7 +16,7 @@ class ChickenAdminScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Appetizers'),
+      appBar: AppBar(title: Text('Chicken Sandwich'),
         actions: [
           SizedBox(width: 10,),
           InkWell(

@@ -36,6 +36,7 @@ class AddOrderCubit extends Cubit<OrderStates> {
       'Date' : '${formatted.toString()}',
       'DateAndTime': '${currentTime.toString()}',
       'DateAndTimeAdmin': Timestamp.now(),
+      'canCancel': 'true',
     }).then((value) async{
       emit(AddOrderStateSuccess());
 

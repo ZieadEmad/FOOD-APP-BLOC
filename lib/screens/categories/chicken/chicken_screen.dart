@@ -21,9 +21,7 @@ class ChickenScreen extends StatelessWidget {
           SizedBox(
             width: 10,
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: InkWell(
+           InkWell(
               onTap: () {
                 navigateAndFinish(context, LayoutScreen());
               },
@@ -39,7 +37,6 @@ class ChickenScreen extends StatelessWidget {
                 ),
               ),
             ),
-          ),
           SizedBox(
             width: 10,
           ),

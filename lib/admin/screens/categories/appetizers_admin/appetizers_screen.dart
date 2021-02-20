@@ -43,14 +43,14 @@ class AppetizersAdminScreen extends StatelessWidget {
             child: BlocConsumer<AppetizersCubit, AppetizersStates>(
               listener: (context, state) {
                 if (state is AppetizersStateLoading) {
-                  print('ChickenSandwichStateLoading');
+                  print('AppetizersStateLoading');
                   return buildProgress(context: context, text: "please Wait.. ");
                 }
                 if (state is AppetizersStateSuccess) {
-                  print('ChickenSandwichStateSuccess');
+                  print('AppetizersStateSuccess');
                 }
                 if (state is AppetizersStateError) {
-                  print('ChickenSandwichStateError');
+                  print('AppetizersStateError');
                   Navigator.pop(context);
                   return buildProgress(
                     context: context,
@@ -90,7 +90,7 @@ class AppetizersAdminScreen extends StatelessWidget {
                                             navigateTo(context,AppetizersAdminScreen());
                                           }
                                         },
-                                        isAdmin: true,
+                                      isAdmin: true,
                                       buttonColor2: Colors.green,
                                       buttonTitle2: 'Edit Meal',
                                       buttonFunction2: (){navigateAndFinish(context, EditMealScreen(

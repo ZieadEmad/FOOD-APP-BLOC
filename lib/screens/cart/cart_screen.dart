@@ -100,66 +100,78 @@ class CartScreen extends StatelessWidget {
                                           height: 100,
                                         ),
                                         SizedBox(
-                                          width: 20,
+                                          width: 10,
                                         ),
-                                        Center(
-                                          child: Column(
+                                         Expanded(
+                                           child: Center(
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Text(
+                                                    '${cartMeals[index]['MealTitle']}',
+                                                    style: TextStyle(
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 12
+                                                    ),
+                                                    maxLines: 1,
+                                                    textAlign: TextAlign.center,
+                                                    overflow: TextOverflow.ellipsis,
+                                                  ),
+                                                  SizedBox(
+                                                    height: 8,
+                                                  ),
+                                                  Text(
+                                                    '${cartMeals[index]['MealPrice']} L.E',
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontWeight: FontWeight.bold,
+                                                        fontSize: 12
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 8,
+                                                  ),
+                                                  Text(
+                                                      'Category: ${cartMeals[index]['MealCategory']}',
+                                                    style: TextStyle(fontSize: 10),
+                                                    overflow: TextOverflow.ellipsis,
+                                                    maxLines: 1,
+
+                                                  ),
+                                                  SizedBox(
+                                                    height: 20,
+                                                  ),
+                                                ],
+                                              ),
+
+                                        ),
+                                         ),
+                                        Row(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.center,
+                                                MainAxisAlignment.end,
                                             children: [
-                                              SizedBox(
-                                                height: 5,
-                                              ),
-                                              Text(
-                                                '${cartMeals[index]['MealTitle']}',
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
+                                              IconButton(
+                                                icon: Icon(
+                                                  Icons.delete,
+                                                  color: Colors.red,
+                                                  size: 25,
                                                 ),
-                                                maxLines: 1,
-                                                textAlign: TextAlign.center,
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                              SizedBox(
-                                                height: 8,
-                                              ),
-                                              Text(
-                                                '${cartMeals[index]['MealPrice']} L.E',
-                                                style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: 8,
-                                              ),
-                                              Text(
-                                                  'Category: ${cartMeals[index]['MealCategory']}'),
-                                              SizedBox(
-                                                height: 20,
+                                                onPressed: () {
+                                                  CartCubit.get(context)
+                                                      .deleteMeal(
+                                                          documentId: cartMealsId,
+                                                          index: index);
+                                                  showToast(text: 'item Deleted', error: true);
+                                                  navigateAndFinish(
+                                                      context, LayoutScreen());
+                                                },
                                               ),
                                             ],
                                           ),
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            IconButton(
-                                              icon: Icon(
-                                                Icons.delete,
-                                                color: Colors.red,
-                                              ),
-                                              onPressed: () {
-                                                CartCubit.get(context)
-                                                    .deleteMeal(
-                                                        documentId: cartMealsId,
-                                                        index: index);
-                                                navigateTo(
-                                                    context, LayoutScreen());
-                                              },
-                                            ),
-                                          ],
-                                        )
                                       ],
                                     ),
                                   ),

@@ -23,9 +23,7 @@ class DessertsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(width: 10,),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
+                  InkWell(
                       onTap: (){navigateAndFinish(context, LayoutScreen());},
                       child: Center(
                         child: Column(
@@ -36,13 +34,13 @@ class DessertsScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(width: 10,),
+
 
                 ],
               ),
             ),
           ),
+          SizedBox(width: 10,),
         ],
       ),
       body:  MultiBlocProvider(

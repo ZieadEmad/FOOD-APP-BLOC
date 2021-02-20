@@ -154,7 +154,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     ),
                                     buildProfileItem(
                                       function: () {},
-                                      title: 'Resturant Website',
+                                      title: 'Restaurant Website',
                                       shape: Image.asset(
                                         'assets/images/network.png',
                                         color: Colors.white,

@@ -15,3 +15,12 @@ class ShowAdminOrderStateError extends ShowAdminOrderStates
 
   ShowAdminOrderStateError(this.error);
 }
+
+
+class NotificationsStateSuccess extends ShowAdminOrderStates {}
+
+class NotificationsStateError extends ShowAdminOrderStates {
+  final String error;
+
+  NotificationsStateError(this.error);
+}

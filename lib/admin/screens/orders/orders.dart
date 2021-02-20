@@ -11,7 +11,7 @@ class AdminOrderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('Users Orders'),
+          title: Text('Orders'),
         actions: [
           SizedBox(width: 10,),
           InkWell(
@@ -22,6 +22,19 @@ class AdminOrderScreen extends StatelessWidget {
                 children: [
                   Icon(Icons.home,color: Colors.white,),
                   Text('HOME'),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(width: 10,),
+          InkWell(
+            onTap: (){navigateAndFinish(context, AdminOrderScreen());},
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.refresh,color: Colors.white,),
+                  Text('Refresh'),
                 ],
               ),
             ),
@@ -59,93 +72,94 @@ class AdminOrderScreen extends StatelessWidget {
                             children: [
                               Text(
                                 'Order Name: ${adminOrderMeals[index]['UserOrder']}',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 12),
                               ),
                               SizedBox(
                                 height: 20,
                               ),
                               Text(
                                 'Date/Time: ${adminOrderMeals[index]['DateAndTime'].toString()}',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 12),
                               ),
                               SizedBox(
                                 height: 20,
                               ),
                               Text(
                                 'Total Price: ${adminOrderMeals[index]['UserTotalPrice']}',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 12),
                               ),
                               SizedBox(
                                 height: 20,
                               ),
                               Text(
                                 'User Name: ${adminOrderMeals[index]['UserFullName'].toString()}',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 12),
                               ),
                               SizedBox(
                                 height: 20,
                               ),
                               Text(
                                 'User Area: ${adminOrderMeals[index]['UserArea']}',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 12),
                               ),
                               SizedBox(
                                 height: 20,
                               ),
                               Text(
                                 'User Street Name: ${adminOrderMeals[index]['UserStreetName']}',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 12),
                               ),
                               SizedBox(
                                 height: 20,
                               ),
                               Text(
                                 'Use Building Number: ${adminOrderMeals[index]['UserBuildingNumber']}',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 12),
                               ),
                               SizedBox(
                                 height: 20,
                               ),
                               Text(
                                 'User Floor Number: ${adminOrderMeals[index]['UserFloorNumber']}',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 12),
                               ),
                               SizedBox(
                                 height: 20,
                               ),
                               Text(
                                 'User Apartment Number: ${adminOrderMeals[index]['UserApartmentNumber']}',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 12),
                               ),
                               SizedBox(
                                 height: 20,
                               ),
                               Text(
                                 'User Note: ${adminOrderMeals[index]['UserNote']}',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 12),
                               ),
                               SizedBox(
                                 height: 20,
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  defaultButton(function: (){
-                                    ShowAdminOrderCubit.get(context).canUserDeleteOrder(cant: false);
-                                    //tell user message by user id meal is Accepted
-                                  }, text: 'Accept',width: 100),
+                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    defaultButton(function: (){
+                                      ShowAdminOrderCubit.get(context).editOrderCancel(adminOrderMealsId,index);
+                                      //tell user message by user id meal is Accepted
+                                      ShowAdminOrderCubit.get(context).sendConfirm(token: adminOrderMeals[index]['UserToken'],);
+                                    }, text: 'Accept',width: 95,toUpper: false),
 
-                                  defaultButton(function: (){
-                                    //tell user message by user id meal is
-                                    // finished and delivery man take it to him soon
-                                  }, text: 'finish',background: Colors.green,width: 100),
+                                    defaultButton(function: (){
+                                      //tell user message by user id meal is
+                                      // finished and delivery man take it to him soon
+                                      ShowAdminOrderCubit.get(context).sendFinish(token: adminOrderMeals[index]['UserToken'],);
+                                    }, text: 'Finish',background: Colors.green,width: 95,toUpper: false),
 
-                                  defaultButton(function: (){
-                                    ShowAdminOrderCubit.get(context).deleteMeal(documentId:adminOrderMealsId,index: index);
-                                  }, text: 'delete',background: Colors.red,width: 100),
-                                ],
-                              ),
-
+                                    defaultButton(function: (){
+                                      ShowAdminOrderCubit.get(context).deleteMeal(documentId:adminOrderMealsId,index: index);
+                                    }, text: 'Delete',background: Colors.red,width: 95,toUpper: false),
+                                  ],
+                                ),
                             ],
                           ),
                         ),

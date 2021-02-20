@@ -267,7 +267,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             '${meals[0]['MealPrice']} L.E',
                                 () {},
                             '${meals[0]['MealDescription']}',
-                                (){CartCubit.get(context).addCart(mealsId[0]);},
+                                (){
+                              CartCubit.get(context).addCart(mealsId[0]);
+                              showToast(text: 'Item Added Successfully', error: false);
+                                },
                           ),
                           SizedBox(
                             height: 10,
@@ -278,7 +281,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             '${meals[1]['MealPrice']} L.E',
                                 () {},
                             '${meals[1]['MealDescription']}',
-                                (){CartCubit.get(context).addCart(mealsId[1]);},
+                                (){
+                              CartCubit.get(context).addCart(mealsId[1]);
+                              showToast(text: 'Item Added Successfully', error: false);
+                                },
                           ),
                           SizedBox(
                             height: 10,
@@ -289,7 +295,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             '${meals[2]['MealPrice']} L.E',
                                 () {},
                             '${meals[2]['MealDescription']}',
-                                (){CartCubit.get(context).addCart(mealsId[2]);},
+                                (){
+                              CartCubit.get(context).addCart(mealsId[2]);
+                              showToast(text: 'Item Added Successfully', error: false);
+                              },
                           ),
                           SizedBox(
                             height: 10,
@@ -300,7 +309,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             '${meals[3]['MealPrice']} L.E',
                                 () {},
                             '${meals[3]['MealDescription']}',
-                                (){CartCubit.get(context).addCart(mealsId[3]);},
+                                (){
+                              CartCubit.get(context).addCart(mealsId[3]);
+                              showToast(text: 'Item Added Successfully', error: false);
+                              },
                           ),
                           SizedBox(
                             height: 10,
@@ -311,7 +323,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             '${meals[4]['MealPrice']} L.E',
                                 () {},
                             '${meals[4]['MealDescription']}',
-                                (){CartCubit.get(context).addCart(mealsId[4]);},
+                                (){
+                              CartCubit.get(context).addCart(mealsId[4]);
+                              showToast(text: 'Item Added Successfully', error: false);
+                                },
                           ),
                           SizedBox(
                             height: 10,
@@ -322,7 +337,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             '${meals[5]['MealPrice']} L.E',
                                 () {},
                             '${meals[5]['MealDescription']}',
-                                (){CartCubit.get(context).addCart(mealsId[5]);},
+                                (){
+                              CartCubit.get(context).addCart(mealsId[5]);
+                              showToast(text: 'Item Added Successfully', error: false);
+                              },
                           ),
                           SizedBox(
                             height: 20,

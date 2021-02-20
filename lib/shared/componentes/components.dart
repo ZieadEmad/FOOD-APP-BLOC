@@ -168,38 +168,40 @@ Widget buildAdminDrawer (ctx){
     NavMenuItem('Kids Meals', (){return KidsAdminScreen();} ),
     NavMenuItem('LogOut', (){removeToken(); return WelcomeScreen();}),
   ];
-  return Drawer(
-    child: Padding(
-      padding:  EdgeInsets.only(top:75,left: 10,right: 8 ),
-      child: ListView.builder(
-        itemCount: navigationMenu.length ,
-        itemBuilder: (context,index){
-          return Padding(
-            padding: EdgeInsets.all(6),
-            child: ListTile(
-              title: Text(
-                navigationMenu[index].title,
-                style: TextStyle(
-                    color: Colors.grey.shade700,
-                    fontSize: 22
+  return SafeArea(
+    child: Drawer(
+      child: Padding(
+        padding:  EdgeInsets.only(top:10,left: 10,right: 8 ),
+        child: ListView.builder(
+          itemCount: navigationMenu.length ,
+          itemBuilder: (context,index){
+            return Padding(
+              padding: EdgeInsets.all(4),
+              child: ListTile(
+                title: Text(
+                  navigationMenu[index].title,
+                  style: TextStyle(
+                      color: Colors.grey.shade700,
+                      fontSize: 12
+                  ),
                 ),
+
+                trailing: Icon(
+                  Icons.chevron_right,
+                  color: Colors.grey.shade400,
+                ),
+                onTap: (){
+                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (context){
+                    return  navigationMenu[index].rote();}),
+
+                  );
+                },
+
               ),
-
-              trailing: Icon(
-                Icons.chevron_right,
-                color: Colors.grey.shade400,
-              ),
-              onTap: (){
-                Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context){
-                  return  navigationMenu[index].rote();}),
-
-                );
-              },
-
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     ),
   );
@@ -499,20 +501,23 @@ Widget buildMealItems({
            child: Image.network('$imageUrl'),
          ),
           SizedBox(height: 20,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              defaultButton(function: buttonFunction , text: '$buttonTitle',width: 160,background: buttonColor),
-              isAdmin ?  SizedBox(width: 1,) : SizedBox(width: 10,),
-              isAdmin ?  SizedBox(width: 1,) : FlatButton(onPressed: favoritesOnPress , child: Column(
-                  children: [
-                    Icon(isRemove ? Icons.favorite : Icons.favorite_border ),
-                    Text( isRemove ? 'Remove from Favorites' : 'Add To Favorites' ),
-                  ],
-                )),
-              isAdmin ?  SizedBox(width: 10,) : SizedBox(width: 1,),
-              isAdmin ?   defaultButton(function: buttonFunction2 , text: '$buttonTitle2',width: 160,background: buttonColor2) : SizedBox(width: 1,),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                defaultButton(function: buttonFunction , text: '$buttonTitle',width: 150,background: buttonColor),
+                isAdmin ?  SizedBox(width: 1,) : SizedBox(width: 2,),
+                isAdmin ?  SizedBox(width: 1,) : FlatButton(onPressed: favoritesOnPress , child: Column(
+                    children: [
+                      Icon(isRemove ? Icons.favorite : Icons.favorite_border ),
+                      Text( isRemove ? 'Remove from Favorites' : 'Add To Favorites' ,style: TextStyle(fontSize: 8),),
+                    ],
+                  )),
+                isAdmin ?  SizedBox(width: 5,) : SizedBox(width: 1,),
+                isAdmin ?   defaultButton(function: buttonFunction2 , text: '$buttonTitle2',width: 130,background: buttonColor2) : SizedBox(width: 1,),
+              ],
+            ),
           ),
         ],
       ),
@@ -555,12 +560,15 @@ Widget buildProfileItem({
           SizedBox(
             height: 10.0,
           ),
-          Text(
-            title.toString(),
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-              color: Colors.black87,
+          Center(
+            child: Text(
+              title.toString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+                color: Colors.black87,
+              ),
             ),
           ),
         ],

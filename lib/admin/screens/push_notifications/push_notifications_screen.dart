@@ -71,7 +71,7 @@ class _PushNotificationsScreenState extends State<PushNotificationsScreen> {
             }
             if (state is NotificationsStateSuccess) {
               print('NotificationsStateSuccess');
-
+              Navigator.pop(context);
             }
             if (state is NotificationsStateError) {
               print('NotificationsStateError');
@@ -136,7 +136,7 @@ class _PushNotificationsScreenState extends State<PushNotificationsScreen> {
                                 showToast(text: 'Please Enter Full Data And Choose photo' , error: true);
                               }
                               else {
-                                NotificationCubit.get(context).sendNotification(
+                                NotificationCubit.get(context).sendNotification2(
                                   image: image,
                                   msgBody: massage,
                                 );

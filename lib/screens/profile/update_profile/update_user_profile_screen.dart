@@ -93,19 +93,22 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                           : defaultButton(
                         function: (){getImage();},
                         text: '+ Edit Your Photo',
-                        width: 200 ,
+                        width: 250 ,
                       ),
                       SizedBox(height: 150,),
                       Container(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text('Please Check Your Data Before Saving',style: TextStyle(fontSize: 20),),
-                                SizedBox(width: 5,),
-                              ],
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text('Please Check Your Data Before Saving',style: TextStyle(fontSize: 10),),
+                                  SizedBox(width: 5,),
+                                ],
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 30,right: 30,top: 15),

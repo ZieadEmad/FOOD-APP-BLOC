@@ -115,7 +115,7 @@ class _UserOrdersScreenState extends State<UserOrdersScreen> {
                                     SizedBox(
                                       height: 20,
                                     ),
-                                    if(canDelete==true)
+                                    if(orderMeals[index]['canCancel']=='true')
                                       Center(child: defaultButton(function: (){
                                         ShowAdminOrderCubit.get(context).deleteMeal(documentId:orderMealsId,index: index);
                                         //navigateAndFinish(context, LayoutScreen());
