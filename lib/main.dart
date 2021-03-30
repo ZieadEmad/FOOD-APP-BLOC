@@ -8,6 +8,7 @@ import 'package:food_project/layout/cubit/cubit.dart';
 import 'package:food_project/layout/layout_screen.dart';
 import 'package:food_project/screens/login/cubit/cubit.dart';
 import 'package:food_project/screens/sign_up/cubit/cubit.dart';
+import 'package:food_project/screens/table/cubit/cubit.dart';
 import 'package:food_project/screens/welcome/welcome_screen.dart';
 import 'package:food_project/shared/network/local/local.dart';
 
@@ -71,6 +72,10 @@ class MyApp extends StatelessWidget {
 
         BlocProvider(
           create: (context) => LayoutCubit(),
+        ),
+
+        BlocProvider(
+          create: (context) => TableCubit(),
         ),
 
 

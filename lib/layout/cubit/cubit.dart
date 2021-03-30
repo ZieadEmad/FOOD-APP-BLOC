@@ -5,8 +5,8 @@ import 'package:food_project/layout/cubit/states.dart';
 import 'package:food_project/screens/cart/cart_screen.dart';
 import 'package:food_project/screens/favorites/favorites_screen.dart';
 import 'package:food_project/screens/home/home_screen.dart';
-import 'package:food_project/screens/orders/orders_screen.dart';
 import 'package:food_project/screens/profile/profile_screen.dart';
+import 'package:food_project/screens/table/table_screen.dart';
 
 class LayoutCubit extends Cubit<LayoutStates> {
 
@@ -16,17 +16,16 @@ class LayoutCubit extends Cubit<LayoutStates> {
 
   var widget = [
     HomeScreen(),
-    CartScreen(),
     FavoritesScreen() ,
     ProfileScreen(),
+    TableScreen(),
   ];
 
   var title = [
     'Tasty Restaurant',
-    'Your Cart',
     'Favorites',
-    'Your Profile'
-
+    'Your Profile',
+    'Table Reserve',
   ];
 
   int currentIndex = 0 ;

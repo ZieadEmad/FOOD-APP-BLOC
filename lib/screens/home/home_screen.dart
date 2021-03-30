@@ -13,7 +13,6 @@ import 'package:food_project/screens/categories/chicken/chicken_screen.dart';
 import 'package:food_project/screens/categories/desserts/desserts_screen.dart';
 import 'package:food_project/screens/categories/family/family_screen.dart';
 import 'package:food_project/screens/categories/kids/kids_screen.dart';
-import 'package:food_project/screens/welcome/welcome_screen.dart';
 import 'package:food_project/shared/componentes/components.dart';
 import 'package:food_project/shared/network/local/local.dart';
 
