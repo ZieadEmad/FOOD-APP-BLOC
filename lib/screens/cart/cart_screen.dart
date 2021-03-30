@@ -58,6 +58,7 @@ class CartScreen extends StatelessWidget {
             condition: state is ShowCartStateLoading,
             builder: (context) => Center(child: CircularProgressIndicator()),
             fallback: (context) => Scaffold(
+              appBar: AppBar(title: Text('Your Cart'),),
               body: ConditionalBuilder(
                 condition: cartMeals.length != 0,
                 builder: (context) => Column(children: [

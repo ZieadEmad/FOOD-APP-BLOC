@@ -47,7 +47,7 @@ class _TableScreenState extends State<TableScreen> {
 
           return ListView(
             children: [
-              SizedBox(height: 40),
+              SizedBox(height: 20),
               Row(
                 children: [
                   SizedBox(
@@ -80,7 +80,106 @@ class _TableScreenState extends State<TableScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 50),
+              SizedBox(height: 30),
+              // Column(
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   mainAxisAlignment: MainAxisAlignment.start,
+              //   children: [
+              //     Row(
+              //       children: [
+              //         SizedBox(
+              //           width: 5,
+              //         ),
+              //         Text(
+              //           'Time',
+              //           style: TextStyle(
+              //               fontSize: 30, fontWeight: FontWeight.bold),
+              //         ),
+              //       ],
+              //     ),
+              //     // SizedBox(height: 20,),
+              //     // // Row(
+              //     // //   crossAxisAlignment: CrossAxisAlignment.center,
+              //     // //   mainAxisAlignment: MainAxisAlignment.center,
+              //     // //   children: [
+              //     // //     SizedBox(width: 3,),
+              //     // //     FlatButton(onPressed: (){} , child: Text('1 to 3'),),
+              //     // //     SizedBox(width: 3,),
+              //     // //     FlatButton(onPressed: (){} , child: Text('3 to 5'),),
+              //     // //     SizedBox(width: 3,),
+              //     // //     FlatButton(onPressed: (){} , child: Text('5 to 7'),),
+              //     // //     SizedBox(width: 3,),
+              //     // //     FlatButton(onPressed: (){} , child: Text('7 to 9'),),
+              //     // //   ],
+              //     // // ),
+              //     // DefaultTabController(
+              //     //   length: 5,
+              //     //   initialIndex: 0,
+              //     //   child: Column(
+              //     //     children: <Widget>[
+              //     //       ButtonsTabBar(
+              //     //         backgroundColor: Colors.blue[600],
+              //     //         unselectedBackgroundColor: Colors.white,
+              //     //         labelStyle:
+              //     //         TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              //     //         unselectedLabelStyle: TextStyle(
+              //     //             color: Colors.blue[600], fontWeight: FontWeight.bold),
+              //     //         borderWidth: 1,
+              //     //         unselectedBorderColor: Colors.blue[600],
+              //     //         radius: 100,
+              //     //         tabs: [
+              //     //           Tab(text: "1 To 3 PM",),
+              //     //           Tab(text: "3 To 5 PM",),
+              //     //           Tab(text: "5 To 7 PM",),
+              //     //           Tab(text: "7 To 9 PM",),
+              //     //           Tab(text: "9 To 11 PM",),
+              //     //         ],
+              //     //         controller: timeController,
+              //     //       ),
+              //     //     ],
+              //     //   ),
+              //     // ),
+              //     SizedBox(
+              //       height: 20,
+              //     ),
+              //
+              //     FFNavigationBar(
+              //       theme: FFNavigationBarTheme(
+              //         barBackgroundColor: Colors.white,
+              //         selectedItemBorderColor: Colors.green,
+              //         selectedItemBackgroundColor: defaultColor,
+              //         selectedItemIconColor: Colors.white,
+              //         selectedItemLabelColor: Colors.black,
+              //       ),
+              //       selectedIndex: currentIndexTime,
+              //       onSelectTab: (index) {
+              //         TableCubit.get(context).changeIndex1(index);
+              //       },
+              //       items: [
+              //         FFNavigationBarItem(
+              //           iconData: Icons.looks_one,
+              //           label: '1 To 3 PM',
+              //         ),
+              //         FFNavigationBarItem(
+              //           iconData: Icons.looks_two,
+              //           label: '3 To 5 PM',
+              //         ),
+              //         FFNavigationBarItem(
+              //           iconData: Icons.looks_3,
+              //           label: '5 To 7 PM',
+              //         ),
+              //         FFNavigationBarItem(
+              //           iconData: Icons.looks_4,
+              //           label: '7 To 9 PM',
+              //         ),
+              //         FFNavigationBarItem(
+              //           iconData: Icons.looks_5,
+              //           label: '9 To 11 PM',
+              //         ),
+              //       ],
+              //     ),
+              //   ],
+              // ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -97,90 +196,43 @@ class _TableScreenState extends State<TableScreen> {
                       ),
                     ],
                   ),
-                  // SizedBox(height: 20,),
-                  // // Row(
-                  // //   crossAxisAlignment: CrossAxisAlignment.center,
-                  // //   mainAxisAlignment: MainAxisAlignment.center,
-                  // //   children: [
-                  // //     SizedBox(width: 3,),
-                  // //     FlatButton(onPressed: (){} , child: Text('1 to 3'),),
-                  // //     SizedBox(width: 3,),
-                  // //     FlatButton(onPressed: (){} , child: Text('3 to 5'),),
-                  // //     SizedBox(width: 3,),
-                  // //     FlatButton(onPressed: (){} , child: Text('5 to 7'),),
-                  // //     SizedBox(width: 3,),
-                  // //     FlatButton(onPressed: (){} , child: Text('7 to 9'),),
-                  // //   ],
-                  // // ),
-                  // DefaultTabController(
-                  //   length: 5,
-                  //   initialIndex: 0,
-                  //   child: Column(
-                  //     children: <Widget>[
-                  //       ButtonsTabBar(
-                  //         backgroundColor: Colors.blue[600],
-                  //         unselectedBackgroundColor: Colors.white,
-                  //         labelStyle:
-                  //         TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                  //         unselectedLabelStyle: TextStyle(
-                  //             color: Colors.blue[600], fontWeight: FontWeight.bold),
-                  //         borderWidth: 1,
-                  //         unselectedBorderColor: Colors.blue[600],
-                  //         radius: 100,
-                  //         tabs: [
-                  //           Tab(text: "1 To 3 PM",),
-                  //           Tab(text: "3 To 5 PM",),
-                  //           Tab(text: "5 To 7 PM",),
-                  //           Tab(text: "7 To 9 PM",),
-                  //           Tab(text: "9 To 11 PM",),
-                  //         ],
-                  //         controller: timeController,
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
                   SizedBox(
                     height: 20,
                   ),
-
-                  FFNavigationBar(
-                    theme: FFNavigationBarTheme(
-                      barBackgroundColor: Colors.white,
-                      selectedItemBorderColor: Colors.green,
-                      selectedItemBackgroundColor: defaultColor,
-                      selectedItemIconColor: Colors.white,
-                      selectedItemLabelColor: Colors.black,
+                  SnakeNavigationBar.color(
+                    snakeViewColor: defaultColor,
+                    selectedItemColor: Colors.white,
+                    unselectedItemColor: Colors.grey,
+                    showSelectedLabels: true,
+                    showUnselectedLabels: true,
+                    height: 100,
+                    selectedLabelStyle: TextStyle(
+                      color: Colors.black,
                     ),
-                    selectedIndex: currentIndexTime,
-                    onSelectTab: (index) {
+                    currentIndex: currentIndexTime,
+                    onTap: (index) {
                       TableCubit.get(context).changeIndex1(index);
                     },
                     items: [
-                      FFNavigationBarItem(
-                        iconData: Icons.looks_one,
-                        label: '1 To 3 PM',
-                      ),
-                      FFNavigationBarItem(
-                        iconData: Icons.looks_two,
-                        label: '3 To 5 PM',
-                      ),
-                      FFNavigationBarItem(
-                        iconData: Icons.looks_3,
-                        label: '5 To 7 PM',
-                      ),
-                      FFNavigationBarItem(
-                        iconData: Icons.looks_4,
-                        label: '7 To 9 PM',
-                      ),
-                      FFNavigationBarItem(
-                        iconData: Icons.looks_5,
-                        label: '9 To 11 PM',
-                      ),
+                      BottomNavigationBarItem(
+                          icon: Text(
+                            '1-3 PM',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          label: 'Time'),
+                      BottomNavigationBarItem(
+                          icon: Text('3-5 PM'), label: 'Time'),
+                      BottomNavigationBarItem(
+                          icon: Text('5-7 PM'), label: 'Time'),
+                      BottomNavigationBarItem(
+                          icon: Text('7-9 PM'), label: 'Time'),
+                      BottomNavigationBarItem(
+                          icon: Text('9-11 PM'))
                     ],
                   ),
                 ],
               ),
-              SizedBox(height: 70),
+              SizedBox(height: 50),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -275,7 +327,7 @@ class _TableScreenState extends State<TableScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 70),
+              SizedBox(height: 50),
               Center(
                   child: Text(
                 'Choose Your Table',
@@ -316,6 +368,7 @@ class _TableScreenState extends State<TableScreen> {
                     radius: 12
                 ),
               ),
+              SizedBox(height: 20,),
             ],
           );
         },
