@@ -1,18 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_project/admin/screens/orders/cubit/state.dart';
-import 'package:food_project/layout/layout_screen.dart';
-import 'package:food_project/screens/cart/cart_screen.dart';
 import 'package:food_project/screens/cart/cubit/cubit.dart';
 import 'package:food_project/screens/cart/cubit/states.dart';
 import 'package:food_project/screens/favorites/cubit/cubit.dart';
 import 'package:food_project/screens/favorites/cubit/states.dart';
-import 'package:food_project/screens/favorites/favorites_screen.dart';
 import 'package:food_project/screens/orders/cubit/cubit.dart';
 import 'package:food_project/screens/orders/cubit/states.dart';
 import 'package:food_project/screens/orders/orders_screen.dart';
 import 'package:food_project/screens/profile/update_profile/update_user_profile_screen.dart';
+import 'package:food_project/screens/table/tables_screen_.dart';
 import 'package:food_project/screens/welcome/welcome_screen.dart';
 import 'package:food_project/shared/colors/colors.dart';
 import 'package:food_project/shared/componentes/components.dart';
@@ -192,8 +189,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       width: 20.0,
                                     ),
                                     buildProfileItem(
-                                      function: () {},
-                                      title: 'My Favourites',
+                                      function: () {
+                                        navigateTo(context, TablesScreen());
+                                      },
+                                      title: 'Tables Reservation',
                                       shape: Text(
                                           '${favoritesItems.length}',
                                           style: TextStyle(

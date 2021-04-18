@@ -15,34 +15,28 @@ class BeefScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('Beef Sandwichs'),
         actions: [
-          SizedBox(width: 10,),
+          SizedBox(
+            width: 10,
+          ),
           InkWell(
-            onTap: (){navigateTo(context, LayoutScreen());},
+            onTap: () {
+              navigateAndFinish(context, LayoutScreen());
+            },
             child: Center(
               child: Column(
                 children: [
-                  SizedBox(width: 10,),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                      onTap: (){navigateAndFinish(context, LayoutScreen());},
-                      child: Center(
-                        child: Column(
-                          children: [
-                            Icon(Icons.home,color: Colors.white,),
-                            Text('HOME'),
-                          ],
-                        ),
-                      ),
-                    ),
+                  Icon(
+                    Icons.home,
+                    color: Colors.white,
                   ),
-                  SizedBox(width: 10,),
-
+                  Text('HOME'),
                 ],
               ),
             ),
           ),
-          SizedBox(width: 10,),
+          SizedBox(
+            width: 10,
+          ),
         ],
       ),
       body: MultiBlocProvider(

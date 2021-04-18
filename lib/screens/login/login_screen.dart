@@ -77,14 +77,11 @@ class LoginScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 60),
-                    child: Container(
+                   Container(
                       child: logo(),
                     ),
-                  ),
                   SizedBox(
-                    height: 80,
+                    height: 20,
                   ),
 
                   defaultTextBox(

@@ -1,38 +1,40 @@
-import 'package:ff_navigation_bar/ff_navigation_bar.dart';
-import 'package:ff_navigation_bar/ff_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:food_project/screens/table/cubit/cubit.dart';
 import 'package:food_project/screens/table/cubit/state.dart';
+import 'package:food_project/screens/table/tables_screen_.dart';
 import 'package:food_project/shared/colors/colors.dart';
 import 'package:food_project/shared/componentes/components.dart';
 import 'package:intl/intl.dart';
 
-class TableScreen extends StatefulWidget {
+class ReserveScreen extends StatefulWidget {
   static final DateTime now = DateTime.now();
   static final DateFormat formatter = DateFormat('dd-MM-yyyy');
 
   @override
-  _TableScreenState createState() => _TableScreenState();
+  _ReserveScreenState createState() => _ReserveScreenState();
 }
 
-class _TableScreenState extends State<TableScreen> {
-  final String formatted = TableScreen.formatter.format(TableScreen.now);
+class _ReserveScreenState extends State<ReserveScreen> {
+  final String formatted = ReserveScreen.formatter.format(ReserveScreen.now);
 
-  var currentHour = new DateTime(TableScreen.now.hour);
+  var currentHour = new DateTime(ReserveScreen.now.hour);
 
-  var currentMinute = new DateTime(TableScreen.now.minute);
+  var currentMinute = new DateTime(ReserveScreen.now.minute);
 
   var currentTime = new DateTime(
-      TableScreen.now.year,
-      TableScreen.now.month,
-      TableScreen.now.day,
-      TableScreen.now.hour,
-      TableScreen.now.minute,
-      TableScreen.now.second);
+      ReserveScreen.now.year,
+      ReserveScreen.now.month,
+      ReserveScreen.now.day,
+      ReserveScreen.now.hour,
+      ReserveScreen.now.minute,
+      ReserveScreen.now.second
+  );
 
   TabController timeController;
+
+  var phoneController = TextEditingController();
 
   String tableValue = 'Table1';
 
@@ -40,11 +42,27 @@ class _TableScreenState extends State<TableScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocConsumer<TableCubit, TableStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state is AddTableStateSuccess) {
+            print('AddTableStateSuccess');
+            showToast(text: 'successfully', error: false);
+            return navigateAndFinish(
+              context,
+              TablesScreen(),
+            );
+          }
+          if (state is AddTableStateError) {
+            print('AddTableStateError');
+            return buildProgress(
+              context: context,
+              text: "${state.error.toString()}",
+              error: true ,
+            );
+          }
+        },
         builder: (context, state) {
           var currentIndexTime = TableCubit.get(context).currentIndex1;
           var currentIndexPeople = TableCubit.get(context).currentIndex2;
-
           return ListView(
             children: [
               SizedBox(height: 20),
@@ -60,7 +78,7 @@ class _TableScreenState extends State<TableScreen> {
                       Text(
                         'Today :',
                         style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold),
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -74,112 +92,13 @@ class _TableScreenState extends State<TableScreen> {
                       Text(
                         '$formatted',
                         style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold),
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
                 ],
               ),
               SizedBox(height: 30),
-              // Column(
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   mainAxisAlignment: MainAxisAlignment.start,
-              //   children: [
-              //     Row(
-              //       children: [
-              //         SizedBox(
-              //           width: 5,
-              //         ),
-              //         Text(
-              //           'Time',
-              //           style: TextStyle(
-              //               fontSize: 30, fontWeight: FontWeight.bold),
-              //         ),
-              //       ],
-              //     ),
-              //     // SizedBox(height: 20,),
-              //     // // Row(
-              //     // //   crossAxisAlignment: CrossAxisAlignment.center,
-              //     // //   mainAxisAlignment: MainAxisAlignment.center,
-              //     // //   children: [
-              //     // //     SizedBox(width: 3,),
-              //     // //     FlatButton(onPressed: (){} , child: Text('1 to 3'),),
-              //     // //     SizedBox(width: 3,),
-              //     // //     FlatButton(onPressed: (){} , child: Text('3 to 5'),),
-              //     // //     SizedBox(width: 3,),
-              //     // //     FlatButton(onPressed: (){} , child: Text('5 to 7'),),
-              //     // //     SizedBox(width: 3,),
-              //     // //     FlatButton(onPressed: (){} , child: Text('7 to 9'),),
-              //     // //   ],
-              //     // // ),
-              //     // DefaultTabController(
-              //     //   length: 5,
-              //     //   initialIndex: 0,
-              //     //   child: Column(
-              //     //     children: <Widget>[
-              //     //       ButtonsTabBar(
-              //     //         backgroundColor: Colors.blue[600],
-              //     //         unselectedBackgroundColor: Colors.white,
-              //     //         labelStyle:
-              //     //         TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              //     //         unselectedLabelStyle: TextStyle(
-              //     //             color: Colors.blue[600], fontWeight: FontWeight.bold),
-              //     //         borderWidth: 1,
-              //     //         unselectedBorderColor: Colors.blue[600],
-              //     //         radius: 100,
-              //     //         tabs: [
-              //     //           Tab(text: "1 To 3 PM",),
-              //     //           Tab(text: "3 To 5 PM",),
-              //     //           Tab(text: "5 To 7 PM",),
-              //     //           Tab(text: "7 To 9 PM",),
-              //     //           Tab(text: "9 To 11 PM",),
-              //     //         ],
-              //     //         controller: timeController,
-              //     //       ),
-              //     //     ],
-              //     //   ),
-              //     // ),
-              //     SizedBox(
-              //       height: 20,
-              //     ),
-              //
-              //     FFNavigationBar(
-              //       theme: FFNavigationBarTheme(
-              //         barBackgroundColor: Colors.white,
-              //         selectedItemBorderColor: Colors.green,
-              //         selectedItemBackgroundColor: defaultColor,
-              //         selectedItemIconColor: Colors.white,
-              //         selectedItemLabelColor: Colors.black,
-              //       ),
-              //       selectedIndex: currentIndexTime,
-              //       onSelectTab: (index) {
-              //         TableCubit.get(context).changeIndex1(index);
-              //       },
-              //       items: [
-              //         FFNavigationBarItem(
-              //           iconData: Icons.looks_one,
-              //           label: '1 To 3 PM',
-              //         ),
-              //         FFNavigationBarItem(
-              //           iconData: Icons.looks_two,
-              //           label: '3 To 5 PM',
-              //         ),
-              //         FFNavigationBarItem(
-              //           iconData: Icons.looks_3,
-              //           label: '5 To 7 PM',
-              //         ),
-              //         FFNavigationBarItem(
-              //           iconData: Icons.looks_4,
-              //           label: '7 To 9 PM',
-              //         ),
-              //         FFNavigationBarItem(
-              //           iconData: Icons.looks_5,
-              //           label: '9 To 11 PM',
-              //         ),
-              //       ],
-              //     ),
-              //   ],
-              // ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -192,7 +111,7 @@ class _TableScreenState extends State<TableScreen> {
                       Text(
                         'Time',
                         style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold),
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -245,7 +164,7 @@ class _TableScreenState extends State<TableScreen> {
                       Text(
                         'Number Of People',
                         style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold),
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -331,13 +250,13 @@ class _TableScreenState extends State<TableScreen> {
               Center(
                   child: Text(
                 'Choose Your Table',
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               )),
               SizedBox(height: 5,),
               Center(
                 child: DropdownButton<String>(
                   hint: Text("Tables"),
-                  style: TextStyle(fontSize: 25, color: Colors.black),
+                  style: TextStyle(fontSize: 15, color: Colors.black),
                   value: tableValue,
                   onChanged: (String newValue) {
                     setState(() {
@@ -359,11 +278,34 @@ class _TableScreenState extends State<TableScreen> {
                   }).toList(),
                 ),
               ),
+              SizedBox(height: 5,),
+              Padding(
+                padding: const EdgeInsets.only(left: 16,right: 16),
+                child: defaultTextBox(
+                  type: TextInputType.phone,
+                  title: 'Phone Number',
+                  hint: '01027826885',
+                  controller: phoneController,
+                ),
+              ),
               SizedBox(height: 30,),
               Padding(
                 padding: const EdgeInsets.only(left: 25,right: 25),
                 child: defaultButton(
-                    function: (){},
+                    function: (){
+                        if(phoneController.text.isEmpty)
+                        {
+                        showToast(text: 'please enter your phone number', error:  true );
+                        return ;
+                        }
+                      TableCubit.get(context).reserveTable(
+                         date: '$formatted',
+                         time: TableCubit.get(context).times[currentIndexTime].toString(),
+                         number: TableCubit.get(context).people[currentIndexPeople].toString(),
+                         tableId: tableValue.toString(),
+                         phone: phoneController.text,
+                      );
+                    },
                     text: 'Reserve Table',
                     radius: 12
                 ),
@@ -376,15 +318,4 @@ class _TableScreenState extends State<TableScreen> {
     );
   }
 }
-// ListView(
-//      physics: BouncingScrollPhysics(),
-//      scrollDirection: Axis.horizontal,
-//      children: [
-//      Container(
-//        width: 50,
-//        decoration: BoxDecoration(
-//        borderRadius: BorderRadius.circular(16),
-//        ),
-//      ),
-//      ],
-//    ),
+

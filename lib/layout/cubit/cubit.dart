@@ -6,7 +6,7 @@ import 'package:food_project/screens/cart/cart_screen.dart';
 import 'package:food_project/screens/favorites/favorites_screen.dart';
 import 'package:food_project/screens/home/home_screen.dart';
 import 'package:food_project/screens/profile/profile_screen.dart';
-import 'package:food_project/screens/table/table_screen.dart';
+import 'package:food_project/screens/table/reserve_screen.dart';
 
 class LayoutCubit extends Cubit<LayoutStates> {
 
@@ -18,7 +18,7 @@ class LayoutCubit extends Cubit<LayoutStates> {
     HomeScreen(),
     FavoritesScreen() ,
     ProfileScreen(),
-    TableScreen(),
+    ReserveScreen(),
   ];
 
   var title = [

@@ -28,13 +28,13 @@ class _PhoneScreenState extends State<PhoneScreen> {
           children: [
 
             SizedBox(
-              height: 50,
+              height: 20,
             ),
             logo(),
 
             if(!isCode)
               SizedBox(
-                height: 100,
+                height: 60,
               ),
             if(!isCode)
               defaultTextBox(

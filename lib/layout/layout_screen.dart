@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_project/layout/cubit/cubit.dart';
 import 'package:food_project/layout/cubit/states.dart';
 import 'package:food_project/screens/cart/cart_screen.dart';
-import 'package:food_project/screens/table/table_screen.dart';
+import 'package:food_project/screens/table/reserve_screen.dart';
 import 'package:food_project/shared/colors/colors.dart';
 import 'package:food_project/shared/componentes/components.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
@@ -34,6 +34,7 @@ class LayoutScreen extends StatelessWidget {
               SizedBox(width: 20,),
             ],
           ),
+          drawer:buildUserDrawer(context),
           bottomNavigationBar: Container(
             decoration: BoxDecoration(
               boxShadow: [

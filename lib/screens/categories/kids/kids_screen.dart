@@ -16,19 +16,28 @@ class KidsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('Kids Meals'),
         actions: [
-          SizedBox(width: 10,),
+          SizedBox(
+            width: 10,
+          ),
           InkWell(
-              onTap: (){navigateAndFinish(context, LayoutScreen());},
-              child: Center(
-                child: Column(
-                  children: [
-                    Icon(Icons.home,color: Colors.white,),
-                    Text('HOME'),
-                  ],
-                ),
+            onTap: () {
+              navigateAndFinish(context, LayoutScreen());
+            },
+            child: Center(
+              child: Column(
+                children: [
+                  Icon(
+                    Icons.home,
+                    color: Colors.white,
+                  ),
+                  Text('HOME'),
+                ],
               ),
             ),
-          SizedBox(width: 10,),
+          ),
+          SizedBox(
+            width: 10,
+          ),
 
         ],
       ),

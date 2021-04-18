@@ -16,31 +16,28 @@ class DessertsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('Desserts'),
         actions: [
-          SizedBox(width: 10,),
+          SizedBox(
+            width: 10,
+          ),
           InkWell(
-            onTap: (){navigateAndFinish(context, LayoutScreen());},
+            onTap: () {
+              navigateAndFinish(context, LayoutScreen());
+            },
             child: Center(
               child: Column(
                 children: [
-                  SizedBox(width: 10,),
-                  InkWell(
-                      onTap: (){navigateAndFinish(context, LayoutScreen());},
-                      child: Center(
-                        child: Column(
-                          children: [
-                            Icon(Icons.home,color: Colors.white,),
-                            Text('HOME'),
-                          ],
-                        ),
-                      ),
-                    ),
-
-
+                  Icon(
+                    Icons.home,
+                    color: Colors.white,
+                  ),
+                  Text('HOME'),
                 ],
               ),
             ),
           ),
-          SizedBox(width: 10,),
+          SizedBox(
+            width: 10,
+          ),
         ],
       ),
       body:  MultiBlocProvider(

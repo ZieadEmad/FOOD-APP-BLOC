@@ -54,16 +54,13 @@ class SignUpScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 60),
-                    child: Center(
+                   Center(
                       child: Container(
                         child: logo(),
                       ),
                     ),
-                  ),
                   SizedBox(
-                    height: 50,
+                    height: 20,
                   ),
                   defaultTextBox(
                     title: "Email",
@@ -93,7 +90,7 @@ class SignUpScreen extends StatelessWidget {
                         showToast(text: 'please enter a valid data', error:  true );
                         return ;
                       }
-                      //cunit
+                      //cubit
                       SignUpCubit.get(context).register(email: email,password: password);
                     },
                     text: 'signUp',

@@ -1,8 +1,12 @@
 
+import 'package:intl/intl.dart';
 
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_project/screens/table/cubit/state.dart';
+import 'package:food_project/shared/network/local/local.dart';
 
 class TableCubit extends Cubit<TableStates> {
 
@@ -10,12 +14,18 @@ class TableCubit extends Cubit<TableStates> {
 
   static TableCubit get(context) => BlocProvider.of(context);
 
+  List tableReserve = [];
+  List tableReserveId = [];
+  var auth = FirebaseAuth.instance.currentUser;
+  String error;
+
+
   var times = [
-     "1 To 3 PM",
-     "3 To 5 PM",
-     "5 To 7 PM",
-     "7 To 9 PM",
-     "9 To 11 PM",
+    "1 To 3 PM",
+    "3 To 5 PM",
+    "5 To 7 PM",
+    "7 To 9 PM",
+    "9 To 11 PM",
   ];
 
   var people = [
@@ -26,17 +36,81 @@ class TableCubit extends Cubit<TableStates> {
     "MORE",
   ];
 
-  int currentIndex1 = 0 ;
-  int currentIndex2 = 0 ;
+  int currentIndex1 = 0;
 
-  changeIndex1(index){
-    currentIndex1 = index ;
+  int currentIndex2 = 0;
+
+  changeIndex1(index) {
+    currentIndex1 = index;
     emit(TimeStateIndex());
   }
 
-  changeIndex2(index){
-    currentIndex2 = index ;
+  changeIndex2(index) {
+    currentIndex2 = index;
     emit(TimeStateIndex());
   }
+
+  reserveTable({tableId, time, number, phone, date}) async {
+    FirebaseFirestore.instance.collection('Tables').get().then((value) async {
+      print('$value');
+      for (var doc in value.docs) {
+        if (doc['ReserveDate'] == date.toString()) {
+          if (doc['TableId'] == tableId) {
+            if (doc['UserTableTime'] == time) {
+              error =
+              'Table OR Time is Taken .. please Change Table No. or Time';
+              emit(AddTableStateError(
+                  'Table OR Time is Taken .. please Change Table No. or Time'));
+            }
+            else {
+              emit(AddTableStateLoading());
+              await Firestore.instance.collection('Tables').add({
+                'ReserveDate': '${date.toString()}',
+                'UserTableTime': '${time.toString()}',
+                'NumberPeople': '${number.toString()}',
+                'TableId': '${tableId.toString()}',
+                'UserPhone': '${phone.toString()}',
+                'UserFullName': '${auth.displayName.toString()}',
+                'UserToken': '${auth.uid.toString()}',
+                'UserID': '${getUserToken().toString()}',
+                'CanCancel': 'true',
+              }).then((value) async {
+                emit(AddTableStateSuccess());
+              }).catchError((e) {
+                emit(AddTableStateError(e.toString()));
+              });
+            }
+          }
+        }
+      }
+    });
+  }
+
+  showReserve() {
+    emit(ShowTableStateLoading());
+    FirebaseFirestore.instance.collection('Tables').get().then((value) {
+      emit(ShowTableStateSuccess());
+      print('$value');
+
+      for (var doc in value.docs) {
+        if (doc['UserToken'] == auth.uid.toString()) {
+          tableReserve.add(doc.data());
+        }
+      }
+
+      for (var doc in value.docs) {
+        if (doc['UserId'] == getToken().toString()) {
+          tableReserveId.add(doc.id);
+        }
+      }
+
+      print('========$tableReserveId');
+    }).catchError((e) {
+      emit(ShowTableStateError(e));
+    });
+  }
+
 
 }
+
+

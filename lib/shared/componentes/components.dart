@@ -11,15 +11,21 @@ import 'package:food_project/admin/screens/categories/family_admin/family_screen
 import 'package:food_project/admin/screens/categories/kids_admin/kids_screen.dart';
 import 'package:food_project/admin/screens/orders/orders.dart';
 import 'package:food_project/admin/screens/push_notifications/push_notifications_screen.dart';
+import 'package:food_project/screens/categories/appetizers/appetizers_screen.dart';
+import 'package:food_project/screens/categories/beef/beef_screen.dart';
+import 'package:food_project/screens/categories/chicken/chicken_screen.dart';
+import 'package:food_project/screens/categories/desserts/desserts_screen.dart';
+import 'package:food_project/screens/categories/family/family_screen.dart';
+import 'package:food_project/screens/categories/kids/kids_screen.dart';
 import 'package:food_project/screens/welcome/welcome_screen.dart';
 import 'package:food_project/shared/colors/colors.dart';
 import 'package:food_project/shared/network/local/local.dart';
 
 Widget logo() => Image(
-      image: AssetImage('assets/images/fast-food.png'),
+      image: AssetImage('assets/images/MainLogo.png'),
       fit: BoxFit.cover,
-      height: 150,
-      width: 150,
+      height: 250,
+      width: 250,
     );
 
 Widget defaultButton({
@@ -136,7 +142,8 @@ void buildProgress({context, text, bool error = false})
                 Expanded(child: Text(text)),
               ],
             ),
-            if (error) SizedBox(height: 20),
+            if (error)
+              SizedBox(height: 20),
             if (error)
               defaultButton(
                 function: () {
@@ -166,6 +173,54 @@ Widget buildAdminDrawer (ctx){
     NavMenuItem('Desserts', (){return DessertsAdminScreen();} ),
     NavMenuItem('Family Meals', (){return FamilyAdminScreen();} ),
     NavMenuItem('Kids Meals', (){return KidsAdminScreen();} ),
+    NavMenuItem('LogOut', (){removeToken(); return WelcomeScreen();}),
+  ];
+  return SafeArea(
+    child: Drawer(
+      child: Padding(
+        padding:  EdgeInsets.only(top:10,left: 10,right: 8 ),
+        child: ListView.builder(
+          itemCount: navigationMenu.length ,
+          itemBuilder: (context,index){
+            return Padding(
+              padding: EdgeInsets.all(4),
+              child: ListTile(
+                title: Text(
+                  navigationMenu[index].title,
+                  style: TextStyle(
+                      color: Colors.grey.shade700,
+                      fontSize: 12
+                  ),
+                ),
+
+                trailing: Icon(
+                  Icons.chevron_right,
+                  color: Colors.grey.shade400,
+                ),
+                onTap: (){
+                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (context){
+                    return  navigationMenu[index].rote();}),
+
+                  );
+                },
+
+              ),
+            );
+          },
+        ),
+      ),
+    ),
+  );
+}
+Widget buildUserDrawer (ctx){
+  List<NavMenuItem> navigationMenu =[
+    NavMenuItem('Chicken Sandwich', (){return  ChickenScreen();} ),
+    NavMenuItem('Beef Sandwich', (){return  BeefScreen();} ),
+    NavMenuItem('Family Meals', (){return  FamilyScreen();} ),
+    NavMenuItem('Kids Meals', (){return KidsScreen();} ),
+    NavMenuItem('Appetizers', (){return AppetizersScreen();} ),
+    NavMenuItem('Desserts', (){return DessertsScreen();} ),
     NavMenuItem('LogOut', (){removeToken(); return WelcomeScreen();}),
   ];
   return SafeArea(

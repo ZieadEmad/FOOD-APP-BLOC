@@ -30,15 +30,8 @@ class WelcomeScreen extends StatelessWidget {
 
 
               logo(),
-              SizedBox(height: 50,),
 
-              Text('Tasty APP',style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 30,
-                color: defaultColor
-              ),),
-
-              SizedBox(height: 80,),
+              SizedBox(height: 60,),
               defaultButton(
                 text: 'login',
                 function: (){
