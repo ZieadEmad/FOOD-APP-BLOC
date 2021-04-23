@@ -33,6 +33,7 @@ dependencies:
   firebase_messaging: ^7.0.3
   flutter_launcher_icons: ^0.8.1
   flutter_snake_navigationbar: ^0.4.2
+  dcdg: ^2.0.1
 
 dev_dependencies:
   flutter_test:

@@ -11,6 +11,7 @@ import 'package:food_project/screens/sign_up/cubit/cubit.dart';
 import 'package:food_project/screens/table/cubit/cubit.dart';
 import 'package:food_project/screens/welcome/welcome_screen.dart';
 import 'package:food_project/shared/network/local/local.dart';
+import 'package:dcdg/dcdg.dart';
 
 
 
