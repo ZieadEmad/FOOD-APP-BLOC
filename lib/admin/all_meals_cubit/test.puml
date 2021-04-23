@@ -1,0 +1,1178 @@
+@startuml
+set namespaceSeparator ::
+
+class "food_project::admin::all_meals_cubit::cubit.dart::AllMealsCubit" {
+  +List meals
+  +List mealsID
+  {static} +AllMealsCubit get()
+  +dynamic allMeals()
+  +dynamic editMeal()
+  +Future deleteMeal()
+  +dynamic deleteMealFromScreen()
+}
+
+"bloc::src::cubit.dart::Cubit<State>" <|-- "food_project::admin::all_meals_cubit::cubit.dart::AllMealsCubit"
+
+abstract class "food_project::admin::all_meals_cubit::states.dart::AllMealsStates" {
+}
+
+class "food_project::admin::all_meals_cubit::states.dart::AllMealsStateInitial" {
+}
+
+
+class "food_project::admin::all_meals_cubit::states.dart::AllMealsStateLoading" {
+}
+
+
+
+class "food_project::admin::all_meals_cubit::states.dart::AllMealsStateSuccess" {
+}
+
+
+class "food_project::admin::all_meals_cubit::states.dart::AllMealsStateError" {
+  +dynamic error
+}
+
+
+
+class "food_project::admin::all_meals_cubit::states.dart::EditMealsStateLoading" {
+}
+
+
+class "food_project::admin::all_meals_cubit::states.dart::EditMealsStateSuccess" {
+}
+
+
+
+class "food_project::admin::all_meals_cubit::states.dart::EditMealsStateError" {
+  +dynamic error
+}
+
+
+
+class "food_project::admin::home_screen.dart::AdminHomeScreen" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "food_project::admin::home_screen.dart::AdminHomeScreen"
+
+class "food_project::admin::screens::add_meal::add_meal_screen.dart::AddMealScreen" {
+  +_AddMealScreenState createState()
+}
+
+
+
+class "food_project::admin::screens::add_meal::add_meal_screen.dart::_AddMealScreenState" {
+  +TextEditingController titleController
+  +TextEditingController desController
+  +TextEditingController priceController
+  +TextEditingController categoryController
+  +File image
+  +dynamic imageLink
+  +ImagePicker picker
+  +dynamic dropdownValue
+  +dynamic getImage()
+  +Widget build()
+}
+
+
+"food_project::admin::screens::add_meal::add_meal_screen.dart::_AddMealScreenState" o-- "dart::io::File"
+"food_project::admin::screens::add_meal::add_meal_screen.dart::_AddMealScreenState" o-- "image_picker::image_picker.dart::ImagePicker"
+
+
+class "food_project::admin::screens::add_meal::cubit::cubit.dart::AddMealCubit" {
+  +String imagelink
+  {static} +AddMealCubit get()
+  +dynamic addMeal()
+}
+
+"bloc::src::cubit.dart::Cubit<State>" <|-- "food_project::admin::screens::add_meal::cubit::cubit.dart::AddMealCubit"
+
+abstract class "food_project::admin::screens::add_meal::cubit::states.dart::AddMealStates" {
+}
+
+class "food_project::admin::screens::add_meal::cubit::states.dart::AddMealStateInitial" {
+}
+
+
+
+class "food_project::admin::screens::add_meal::cubit::states.dart::AddMealStateLoading" {
+}
+
+
+class "food_project::admin::screens::add_meal::cubit::states.dart::AddMealStateSuccess" {
+}
+
+
+
+class "food_project::admin::screens::add_meal::cubit::states.dart::AddMealStateError" {
+  +dynamic error
+}
+
+
+
+class "food_project::admin::screens::categories::appetizers_admin::appetizers_screen.dart::AppetizersAdminScreen" {
+  +Widget build()
+}
+
+
+
+class "food_project::admin::screens::categories::beef_admin::beef_screen.dart::BeefAdminScreen" {
+  +Widget build()
+}
+
+
+
+class "food_project::admin::screens::categories::chicken_admin::chicken_screen.dart::ChickenAdminScreen" {
+  +Widget build()
+}
+
+
+
+class "food_project::admin::screens::categories::desserts_admin::desserts_screen.dart::DessertsAdminScreen" {
+  +Widget build()
+}
+
+
+
+class "food_project::admin::screens::categories::family_admin::family_screen.dart::FamilyAdminScreen" {
+  +Widget build()
+}
+
+
+
+class "food_project::admin::screens::categories::kids_admin::kids_screen.dart::KidsAdminScreen" {
+  +Widget build()
+}
+
+
+
+class "food_project::admin::screens::edit_meal::edit_meal_screen.dart::EditMealScreen" {
+  +List meals
+  +List mealsId
+  +int index
+  +TextEditingController titleController
+  +TextEditingController desController
+  +TextEditingController priceController
+  +Widget build()
+}
+
+
+
+
+class "food_project::admin::screens::orders::cubit::cubit.dart::ShowAdminOrderCubit" {
+  +List adminOrderMeals
+  +List adminOrderMealsId
+  +bool canDelete
+  {static} +ShowAdminOrderCubit get()
+  +dynamic showOrdersUser()
+  +dynamic canUserDeleteOrder()
+  +Future deleteMeal()
+  +dynamic editOrderCancel()
+  +dynamic sendConfirm()
+  +dynamic sendFinish()
+}
+
+"bloc::src::cubit.dart::Cubit<State>" <|-- "food_project::admin::screens::orders::cubit::cubit.dart::ShowAdminOrderCubit"
+
+abstract class "food_project::admin::screens::orders::cubit::state.dart::ShowAdminOrderStates" {
+}
+
+class "food_project::admin::screens::orders::cubit::state.dart::ShowAdminOrderStateInitial" {
+}
+
+
+
+class "food_project::admin::screens::orders::cubit::state.dart::ShowAdminOrderStateLoading" {
+}
+
+
+
+class "food_project::admin::screens::orders::cubit::state.dart::ShowAdminOrderStateSuccess" {
+}
+
+
+
+class "food_project::admin::screens::orders::cubit::state.dart::ShowAdminOrderStateError" {
+  +dynamic error
+}
+
+
+
+class "food_project::admin::screens::orders::cubit::state.dart::NotificationsStateSuccess" {
+}
+
+
+class "food_project::admin::screens::orders::cubit::state.dart::NotificationsStateError" {
+  +String error
+}
+
+
+
+class "food_project::admin::screens::orders::orders.dart::AdminOrderScreen" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "food_project::admin::screens::orders::orders.dart::AdminOrderScreen"
+
+class "food_project::admin::screens::push_notifications::cubit::cubit.dart::NotificationCubit" {
+  +String imageLink
+  {static} +NotificationCubit get()
+  +dynamic sendNotification2()
+  +dynamic sendConfirm()
+  +dynamic sendFinish()
+  +dynamic sendAdmin()
+}
+
+"bloc::src::cubit.dart::Cubit<State>" <|-- "food_project::admin::screens::push_notifications::cubit::cubit.dart::NotificationCubit"
+
+abstract class "food_project::admin::screens::push_notifications::cubit::states.dart::NotificationsStates" {
+}
+
+class "food_project::admin::screens::push_notifications::cubit::states.dart::NotificationsStateInitial" {
+}
+
+
+
+class "food_project::admin::screens::push_notifications::cubit::states.dart::NotificationsStateLoading" {
+}
+
+
+
+class "food_project::admin::screens::push_notifications::cubit::states.dart::NotificationsStateSuccess" {
+}
+
+
+
+class "food_project::admin::screens::push_notifications::cubit::states.dart::NotificationsStateError" {
+  +String error
+}
+
+
+
+class "food_project::admin::screens::push_notifications::push_notifications_screen.dart::PushNotificationsScreen" {
+  +_PushNotificationsScreenState createState()
+}
+
+
+
+class "food_project::admin::screens::push_notifications::push_notifications_screen.dart::_PushNotificationsScreenState" {
+  +TextEditingController massageController
+  +File image
+  +dynamic imageLink
+  +ImagePicker picker
+  +dynamic getImage()
+  +Widget build()
+}
+
+
+"food_project::admin::screens::push_notifications::push_notifications_screen.dart::_PushNotificationsScreenState" o-- "dart::io::File"
+
+
+
+class "food_project::admin::screens::tables::cubit::cubit.dart::ShowAdminTableCubit" {
+  +List adminTables
+  +List adminTablesId
+  +bool canDelete
+  {static} +ShowAdminTableCubit get()
+  +dynamic showTablesAdmin()
+  +dynamic canUserDeleteOrder()
+  +Future deleteMeal()
+  +dynamic editTableCancel()
+  +dynamic sendConfirm()
+}
+
+"bloc::src::cubit.dart::Cubit<State>" <|-- "food_project::admin::screens::tables::cubit::cubit.dart::ShowAdminTableCubit"
+
+abstract class "food_project::admin::screens::tables::cubit::states.dart::ShowAdminTableStates" {
+}
+
+class "food_project::admin::screens::tables::cubit::states.dart::ShowAdminTableStateInitial" {
+}
+
+
+
+class "food_project::admin::screens::tables::cubit::states.dart::ShowAdminTableStateLoading" {
+}
+
+
+
+class "food_project::admin::screens::tables::cubit::states.dart::ShowAdminTableStateSuccess" {
+}
+
+
+
+class "food_project::admin::screens::tables::cubit::states.dart::ShowAdminTableStateError" {
+  +dynamic error
+}
+
+
+
+class "food_project::admin::screens::tables::cubit::states.dart::NotificationsStatSuccess" {
+}
+
+
+
+class "food_project::admin::screens::tables::cubit::states.dart::NotificationsStateError" {
+  +String error
+}
+
+
+
+class "food_project::admin::screens::tables::tables_screen.dart::AdminTablesScreen" {
+  +Widget build()
+}
+
+
+class "food_project::layout::cubit::cubit.dart::LayoutCubit" {
+  +List<Widget> widget
+  +List<String> title
+  +int currentIndex
+  {static} +LayoutCubit get()
+  +dynamic changeIndex()
+}
+
+"bloc::src::cubit.dart::Cubit<State>" <|-- "food_project::layout::cubit::cubit.dart::LayoutCubit"
+
+abstract class "food_project::layout::cubit::states.dart::LayoutStates" {
+}
+
+class "food_project::layout::cubit::states.dart::LayoutStateInitial" {
+}
+
+"food_project::layout::cubit::states.dart::LayoutStates" <|-- "food_project::layout::cubit::states.dart::LayoutStateInitial"
+
+class "food_project::layout::cubit::states.dart::LayoutStateIndex" {
+}
+
+"food_project::layout::cubit::states.dart::LayoutStates" <|-- "food_project::layout::cubit::states.dart::LayoutStateIndex"
+
+class "food_project::layout::layout_screen.dart::LayoutScreen" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "food_project::layout::layout_screen.dart::LayoutScreen"
+
+class "food_project::main.dart::MyApp" {
+  +dynamic widget
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "food_project::main.dart::MyApp"
+
+class "food_project::screens::cart::cart_screen.dart::CartScreen" {
+  +dynamic getTotalPrice()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "food_project::screens::cart::cart_screen.dart::CartScreen"
+
+class "food_project::screens::cart::cubit::cubit.dart::CartCubit" {
+  +List cartMeals
+  +List cartMealsId
+  {static} +CartCubit get()
+  +dynamic addCart()
+  +dynamic showCart()
+  +dynamic removeCartItems()
+  +Future deleteMeal()
+}
+
+"bloc::src::cubit.dart::Cubit<State>" <|-- "food_project::screens::cart::cubit::cubit.dart::CartCubit"
+
+abstract class "food_project::screens::cart::cubit::states.dart::CartStates" {
+}
+
+class "food_project::screens::cart::cubit::states.dart::CartStateInitial" {
+}
+
+"food_project::screens::cart::cubit::states.dart::CartStates" <|-- "food_project::screens::cart::cubit::states.dart::CartStateInitial"
+
+class "food_project::screens::cart::cubit::states.dart::AddCartStateLoading" {
+}
+
+
+
+class "food_project::screens::cart::cubit::states.dart::ShowCartStateLoading" {
+}
+
+
+
+class "food_project::screens::cart::cubit::states.dart::AddCartStateSuccess" {
+}
+
+
+
+class "food_project::screens::cart::cubit::states.dart::ShowCartStateSuccess" {
+}
+
+
+
+class "food_project::screens::cart::cubit::states.dart::AddCartStateError" {
+  +dynamic error
+}
+
+"food_project::screens::cart::cubit::states.dart::CartStates" <|-- "food_project::screens::cart::cubit::states.dart::AddCartStateError"
+
+class "food_project::screens::cart::cubit::states.dart::ShowCartStateError" {
+  +dynamic error
+}
+
+
+
+class "food_project::screens::categories::appetizers::appetizers_screen.dart::AppetizersScreen" {
+  +Widget build()
+}
+
+
+
+class "food_project::screens::categories::appetizers::cubit::cubit.dart::AppetizersCubit" {
+  +List appetizersMeals
+  +List appetizersMealsId
+  {static} +AppetizersCubit get()
+  +dynamic appetizers()
+}
+
+"bloc::src::cubit.dart::Cubit<State>" <|-- "food_project::screens::categories::appetizers::cubit::cubit.dart::AppetizersCubit"
+
+abstract class "food_project::screens::categories::appetizers::cubit::states.dart::AppetizersStates" {
+}
+
+class "food_project::screens::categories::appetizers::cubit::states.dart::AppetizersStateInitial" {
+}
+
+
+
+class "food_project::screens::categories::appetizers::cubit::states.dart::AppetizersStateLoading" {
+}
+
+
+
+class "food_project::screens::categories::appetizers::cubit::states.dart::AppetizersStateSuccess" {
+}
+
+
+
+class "food_project::screens::categories::appetizers::cubit::states.dart::AppetizersStateError" {
+  +dynamic error
+}
+
+
+
+class "food_project::screens::categories::beef::beef_screen.dart::BeefScreen" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "food_project::screens::categories::beef::beef_screen.dart::BeefScreen"
+
+class "food_project::screens::categories::beef::cubit::cubit.dart::BeefSCubit" {
+  +List beefMeals
+  +List beefMealsId
+  {static} +BeefSCubit get()
+  +dynamic beefMeal()
+}
+
+"bloc::src::cubit.dart::Cubit<State>" <|-- "food_project::screens::categories::beef::cubit::cubit.dart::BeefSCubit"
+
+abstract class "food_project::screens::categories::beef::cubit::states.dart::BeefStates" {
+}
+
+class "food_project::screens::categories::beef::cubit::states.dart::BeefStateInitial" {
+}
+
+
+class "food_project::screens::categories::beef::cubit::states.dart::BeefStateLoading" {
+}
+
+
+
+class "food_project::screens::categories::beef::cubit::states.dart::BeefStateSuccess" {
+}
+
+
+class "food_project::screens::categories::beef::cubit::states.dart::BeefStateError" {
+  +dynamic error
+}
+
+
+
+class "food_project::screens::categories::chicken::chicken_screen.dart::ChickenScreen" {
+  +Widget build()
+}
+
+
+
+class "food_project::screens::categories::chicken::cubit::cubit.dart::ChickenSandwichCubit" {
+  +List chickenMeals
+  +List chickenMealsId
+  {static} +ChickenSandwichCubit get()
+  +dynamic chickenSandwich()
+}
+
+"bloc::src::cubit.dart::Cubit<State>" <|-- "food_project::screens::categories::chicken::cubit::cubit.dart::ChickenSandwichCubit"
+
+abstract class "food_project::screens::categories::chicken::cubit::state.dart::ChickenSandwichStates" {
+}
+
+class "food_project::screens::categories::chicken::cubit::state.dart::ChickenSandwichStateInitial" {
+}
+
+
+
+class "food_project::screens::categories::chicken::cubit::state.dart::ChickenSandwichStateLoading" {
+}
+
+
+
+class "food_project::screens::categories::chicken::cubit::state.dart::ChickenSandwichStateSuccess" {
+}
+
+
+
+class "food_project::screens::categories::chicken::cubit::state.dart::ChickenSandwichStateError" {
+  +dynamic error
+}
+
+
+
+class "food_project::screens::categories::desserts::cubit::cubit.dart::DessertsCubit" {
+  +List desserts
+  +List dessertsId
+  {static} +DessertsCubit get()
+  +dynamic dessertsMeals()
+}
+
+"bloc::src::cubit.dart::Cubit<State>" <|-- "food_project::screens::categories::desserts::cubit::cubit.dart::DessertsCubit"
+
+abstract class "food_project::screens::categories::desserts::cubit::states.dart::DessertsStates" {
+}
+
+class "food_project::screens::categories::desserts::cubit::states.dart::DessertsStateInitial" {
+}
+
+
+
+class "food_project::screens::categories::desserts::cubit::states.dart::DessertsStateLoading" {
+}
+
+
+
+class "food_project::screens::categories::desserts::cubit::states.dart::DessertsStateSuccess" {
+}
+
+
+
+class "food_project::screens::categories::desserts::cubit::states.dart::DessertsStateError" {
+  +dynamic error
+}
+
+
+
+class "food_project::screens::categories::desserts::desserts_screen.dart::DessertsScreen" {
+  +Widget build()
+}
+
+
+
+class "food_project::screens::categories::family::cubit::cubit.dart::FamilyMealsCubit" {
+  +List familyMeals
+  +List familyMealsId
+  {static} +FamilyMealsCubit get()
+  +dynamic familyMeal()
+}
+
+"bloc::src::cubit.dart::Cubit<State>" <|-- "food_project::screens::categories::family::cubit::cubit.dart::FamilyMealsCubit"
+
+abstract class "food_project::screens::categories::family::cubit::states.dart::FamilyMealsStates" {
+}
+
+class "food_project::screens::categories::family::cubit::states.dart::FamilyMealsStateInitial" {
+}
+
+
+
+class "food_project::screens::categories::family::cubit::states.dart::FamilyMealsStateLoading" {
+}
+
+
+
+class "food_project::screens::categories::family::cubit::states.dart::FamilyMealsStateSuccess" {
+}
+
+
+
+class "food_project::screens::categories::family::cubit::states.dart::FamilyMealsStateError" {
+  +dynamic error
+}
+
+
+
+class "food_project::screens::categories::family::family_screen.dart::FamilyScreen" {
+  +Widget build()
+}
+
+
+
+class "food_project::screens::categories::kids::cubit::cubit.dart::KidsMealsCubit" {
+  +List kidsMeals
+  +List kidsMealsId
+  {static} +KidsMealsCubit get()
+  +dynamic kidsMeal()
+}
+
+"bloc::src::cubit.dart::Cubit<State>" <|-- "food_project::screens::categories::kids::cubit::cubit.dart::KidsMealsCubit"
+
+abstract class "food_project::screens::categories::kids::cubit::states.dart::KidsMealsStates" {
+}
+
+class "food_project::screens::categories::kids::cubit::states.dart::KidsMealsStateInitial" {
+}
+
+
+
+class "food_project::screens::categories::kids::cubit::states.dart::KidsMealsStateLoading" {
+}
+
+
+
+class "food_project::screens::categories::kids::cubit::states.dart::KidsMealsStateSuccess" {
+}
+
+
+
+class "food_project::screens::categories::kids::cubit::states.dart::KidsMealsStateError" {
+  +dynamic error
+}
+
+
+
+class "food_project::screens::categories::kids::kids_screen.dart::KidsScreen" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "food_project::screens::categories::kids::kids_screen.dart::KidsScreen"
+
+class "food_project::screens::favorites::cubit::cubit.dart::FavoritesCubit" {
+  +List favoritesMeals
+  +List favoritesId
+  {static} +FavoritesCubit get()
+  +dynamic addFavorites()
+  +dynamic showFavorites()
+  +Future deleteMeal()
+}
+
+"bloc::src::cubit.dart::Cubit<State>" <|-- "food_project::screens::favorites::cubit::cubit.dart::FavoritesCubit"
+
+abstract class "food_project::screens::favorites::cubit::states.dart::FavoritesStates" {
+}
+
+class "food_project::screens::favorites::cubit::states.dart::AddFavoritesStateInitial" {
+}
+
+
+
+class "food_project::screens::favorites::cubit::states.dart::AddFavoritesStateLoading" {
+}
+
+
+class "food_project::screens::favorites::cubit::states.dart::ShowFavoritesStateLoading" {
+}
+
+
+
+class "food_project::screens::favorites::cubit::states.dart::AddFavoritesStateSuccess" {
+}
+
+
+
+class "food_project::screens::favorites::cubit::states.dart::ShowFavoritesStateSuccess" {
+}
+
+
+class "food_project::screens::favorites::cubit::states.dart::AddFavoritesStateError" {
+  +dynamic error
+}
+
+
+
+class "food_project::screens::favorites::cubit::states.dart::ShowFavoritesStateError" {
+  +dynamic error
+}
+
+
+
+class "food_project::screens::favorites::favorites_screen.dart::FavoritesScreen" {
+  +Widget build()
+}
+
+
+
+class "food_project::screens::forgot_password::forgot_password_screen.dart::ForgotPasswordScreen" {
+  +TextEditingController emailController
+  +Widget build()
+}
+
+
+
+class "food_project::screens::home::home_screen.dart::HomeScreen" {
+  +_HomeScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "food_project::screens::home::home_screen.dart::HomeScreen"
+
+class "food_project::screens::home::home_screen.dart::_HomeScreenState" {
+  +FirebaseMessaging firebaseMessaging
+  +dynamic token
+  +void initState()
+  +void firebaseCloudMessage()
+  +Widget build()
+}
+
+"food_project::screens::home::home_screen.dart::_HomeScreenState" o-- "firebase_messaging::firebase_messaging.dart::FirebaseMessaging"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "food_project::screens::home::home_screen.dart::_HomeScreenState"
+
+class "food_project::screens::login::cubit::cubit.dart::LoginCubit" {
+  -FirebaseAuth _firebaseAuth
+  {static} +LoginCubit get()
+  +dynamic login()
+  +dynamic recoveryPassword()
+}
+
+"food_project::screens::login::cubit::cubit.dart::LoginCubit" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"bloc::src::cubit.dart::Cubit<State>" <|-- "food_project::screens::login::cubit::cubit.dart::LoginCubit"
+
+abstract class "food_project::screens::login::cubit::states.dart::LoginStates" {
+}
+
+class "food_project::screens::login::cubit::states.dart::LoginStatesInitial" {
+}
+
+
+
+class "food_project::screens::login::cubit::states.dart::LoginStatesLoading" {
+}
+
+
+
+class "food_project::screens::login::cubit::states.dart::LoginStatesSuccess" {
+  +dynamic token
+}
+
+
+
+class "food_project::screens::login::cubit::states.dart::LoginStatesError" {
+  +dynamic error
+}
+
+
+
+class "food_project::screens::login::login_screen.dart::LoginScreen" {
+  +dynamic Email
+  +dynamic Pass
+  +UserCredential authResult
+  +TextEditingController emailController
+  +TextEditingController passController
+  +Widget build()
+}
+
+"food_project::screens::login::login_screen.dart::LoginScreen" o-- "firebase_auth::firebase_auth.dart::UserCredential"
+"food_project::screens::login::login_screen.dart::LoginScreen" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "food_project::screens::login::login_screen.dart::LoginScreen"
+
+class "food_project::screens::login_mobile_number::mobile_number_screen.dart::PhoneScreen" {
+  +_PhoneScreenState createState()
+}
+
+
+
+class "food_project::screens::login_mobile_number::mobile_number_screen.dart::_PhoneScreenState" {
+  +TextEditingController phoneController
+  +TextEditingController codeController
+  +bool isCode
+  +dynamic verCode
+  +Widget build()
+  +void sendCode()
+  +void phoneAuthentication()
+}
+
+
+
+
+class "food_project::screens::orders::cubit::cubit.dart::ShowOrderCubit" {
+  +List orderMeals
+  +List orderMealsId
+  {static} +ShowOrderCubit get()
+  +dynamic showOrdersUser()
+  +Future deleteMeal()
+}
+
+"bloc::src::cubit.dart::Cubit<State>" <|-- "food_project::screens::orders::cubit::cubit.dart::ShowOrderCubit"
+
+abstract class "food_project::screens::orders::cubit::states.dart::ShowOrderStates" {
+}
+
+class "food_project::screens::orders::cubit::states.dart::ShowOrderStateInitial" {
+}
+
+
+
+class "food_project::screens::orders::cubit::states.dart::ShowOrderStateLoading" {
+}
+
+
+
+class "food_project::screens::orders::cubit::states.dart::ShowOrderStateSuccess" {
+}
+
+
+
+class "food_project::screens::orders::cubit::states.dart::ShowOrderStateError" {
+  +dynamic error
+}
+
+
+
+class "food_project::screens::orders::orders_screen.dart::UserOrdersScreen" {
+  +_UserOrdersScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "food_project::screens::orders::orders_screen.dart::UserOrdersScreen"
+
+class "food_project::screens::orders::orders_screen.dart::_UserOrdersScreenState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State<T>" <|-- "food_project::screens::orders::orders_screen.dart::_UserOrdersScreenState"
+
+class "food_project::screens::process_to_checkout::cubit::cubit.dart::AddOrderCubit" {
+  +List orderMeals
+  +List orderMealsId
+  {static} +DateTime now
+  {static} +DateFormat formatter
+  +String formatted
+  +DateTime currentHour
+  +DateTime currentMinute
+  +DateTime currentTime
+  {static} +AddOrderCubit get()
+  +dynamic addOrder()
+  +dynamic showOrdersAdmin()
+  +Future deleteMeal()
+}
+
+"food_project::screens::process_to_checkout::cubit::cubit.dart::AddOrderCubit" o-- "intl::intl.dart::DateFormat"
+"bloc::src::cubit.dart::Cubit<State>" <|-- "food_project::screens::process_to_checkout::cubit::cubit.dart::AddOrderCubit"
+
+abstract class "food_project::screens::process_to_checkout::cubit::states.dart::OrderStates" {
+}
+
+class "food_project::screens::process_to_checkout::cubit::states.dart::OrderStateInitial" {
+}
+
+
+
+class "food_project::screens::process_to_checkout::cubit::states.dart::AddOrderStateLoading" {
+}
+
+
+
+class "food_project::screens::process_to_checkout::cubit::states.dart::AddOrderStateSuccess" {
+}
+
+
+class "food_project::screens::process_to_checkout::cubit::states.dart::AddOrderStateError" {
+  +dynamic error
+}
+
+
+
+class "food_project::screens::process_to_checkout::process_checkout_screen.dart::ProcessToCheckOutScreen" {
+  +List cartMeals
+  +List cartMealsId
+  +TextEditingController phoneController
+  +TextEditingController areaController
+  +TextEditingController streetNameController
+  +TextEditingController buildingNumberController
+  +TextEditingController floorController
+  +TextEditingController apartmentController
+  +TextEditingController noteController
+  +dynamic getTotalPrice()
+  +dynamic getTotalNames()
+  +Widget build()
+}
+
+
+
+
+class "food_project::screens::profile::profile_screen.dart::ProfileScreen" {
+  +_ProfileScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "food_project::screens::profile::profile_screen.dart::ProfileScreen"
+
+class "food_project::screens::profile::profile_screen.dart::_ProfileScreenState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State<T>" <|-- "food_project::screens::profile::profile_screen.dart::_ProfileScreenState"
+
+class "food_project::screens::profile::update_profile::cubit::cubit.dart::UpdateProfileCubit" {
+  +String imagelink
+  +User auth
+  {static} +UpdateProfileCubit get()
+  +dynamic updatePhoto()
+  +dynamic updateName()
+}
+
+"food_project::screens::profile::update_profile::cubit::cubit.dart::UpdateProfileCubit" o-- "firebase_auth::firebase_auth.dart::User"
+"bloc::src::cubit.dart::Cubit<State>" <|-- "food_project::screens::profile::update_profile::cubit::cubit.dart::UpdateProfileCubit"
+
+abstract class "food_project::screens::profile::update_profile::cubit::state.dart::UpdateProfileStates" {
+}
+
+class "food_project::screens::profile::update_profile::cubit::state.dart::UpdateProfileStateInitial" {
+}
+
+
+
+class "food_project::screens::profile::update_profile::cubit::state.dart::AddProfilePhotoStateLoading" {
+}
+
+
+
+class "food_project::screens::profile::update_profile::cubit::state.dart::AddProfilePhotoStateSuccess" {
+}
+
+
+
+class "food_project::screens::profile::update_profile::cubit::state.dart::AddProfilePhotoStateError" {
+  +dynamic error
+}
+
+
+
+class "food_project::screens::profile::update_profile::cubit::state.dart::UpdateProfilePhotoStateLoading" {
+}
+
+
+
+class "food_project::screens::profile::update_profile::cubit::state.dart::UpdateProfilePhotoStateSuccess" {
+}
+
+
+
+class "food_project::screens::profile::update_profile::cubit::state.dart::UpdateProfilePhotoStateError" {
+  +dynamic error
+}
+
+
+
+class "food_project::screens::profile::update_profile::cubit::state.dart::UpdateProfileNameStateLoading" {
+}
+
+
+
+class "food_project::screens::profile::update_profile::cubit::state.dart::UpdateProfileNameStateSuccess" {
+}
+
+
+
+class "food_project::screens::profile::update_profile::cubit::state.dart::UpdateProfileNameStateError" {
+  +dynamic error
+}
+
+
+
+class "food_project::screens::profile::update_profile::update_user_profile_screen.dart::UpdateProfileScreen" {
+  +_UpdateProfileScreenState createState()
+}
+
+
+
+class "food_project::screens::profile::update_profile::update_user_profile_screen.dart::_UpdateProfileScreenState" {
+  +TextEditingController nameController
+  +TextEditingController phoneController
+  +File image
+  +dynamic imageLink
+  +ImagePicker picker
+  +dynamic getImage()
+  +Widget build()
+}
+
+
+"food_project::screens::profile::update_profile::update_user_profile_screen.dart::_UpdateProfileScreenState" o-- "dart::io::File"
+
+
+
+class "food_project::screens::sign_up::cubit::cubit.dart::SignUpCubit" {
+  {static} +SignUpCubit get()
+  +dynamic register()
+}
+
+"bloc::src::cubit.dart::Cubit<State>" <|-- "food_project::screens::sign_up::cubit::cubit.dart::SignUpCubit"
+
+abstract class "food_project::screens::sign_up::cubit::states.dart::SignUpStates" {
+}
+
+class "food_project::screens::sign_up::cubit::states.dart::SignUpStateInitial" {
+}
+
+
+
+class "food_project::screens::sign_up::cubit::states.dart::SignUpStateLoading" {
+}
+
+
+
+class "food_project::screens::sign_up::cubit::states.dart::SignUpStateSuccess" {
+  +UserCredential authRuslut
+}
+
+"food_project::screens::sign_up::cubit::states.dart::SignUpStateSuccess" o-- "firebase_auth::firebase_auth.dart::UserCredential"
+
+
+class "food_project::screens::sign_up::cubit::states.dart::SignUpStateError" {
+  +dynamic error
+}
+
+
+
+class "food_project::screens::sign_up::sign_up_screen.dart::SignUpScreen" {
+  +TextEditingController emailController
+  +TextEditingController passController
+  +Widget build()
+}
+
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "food_project::screens::sign_up::sign_up_screen.dart::SignUpScreen"
+
+class "food_project::screens::table::cubit::cubit.dart::TableCubit" {
+  +List tableReserve
+  +List tableReserveId
+  +User auth
+  +String error
+  +List<String> times
+  +List<String> people
+  +int currentIndex1
+  +int currentIndex2
+  {static} +TableCubit get()
+  +dynamic changeIndex1()
+  +dynamic changeIndex2()
+  +dynamic reserveTable()
+  +dynamic showReserve()
+}
+
+"food_project::screens::table::cubit::cubit.dart::TableCubit" o-- "firebase_auth::firebase_auth.dart::User"
+"bloc::src::cubit.dart::Cubit<State>" <|-- "food_project::screens::table::cubit::cubit.dart::TableCubit"
+
+abstract class "food_project::screens::table::cubit::state.dart::TableStates" {
+}
+
+class "food_project::screens::table::cubit::state.dart::TableStateInitial" {
+}
+
+
+
+class "food_project::screens::table::cubit::state.dart::TimeStateIndex" {
+}
+
+"food_project::screens::table::cubit::state.dart::TableStates" <|-- "food_project::screens::table::cubit::state.dart::TimeStateIndex"
+
+class "food_project::screens::table::cubit::state.dart::AddTableStateLoading" {
+}
+
+
+
+class "food_project::screens::table::cubit::state.dart::AddTableStateSuccess" {
+}
+
+
+
+class "food_project::screens::table::cubit::state.dart::AddTableStateError" {
+  +dynamic error
+}
+
+
+
+class "food_project::screens::table::cubit::state.dart::ShowTableStateLoading" {
+}
+
+
+
+class "food_project::screens::table::cubit::state.dart::ShowTableStateSuccess" {
+}
+
+
+
+class "food_project::screens::table::cubit::state.dart::ShowTableStateError" {
+  +dynamic error
+}
+
+
+
+class "food_project::screens::table::reserve_screen.dart::ReserveScreen" {
+  {static} +DateTime now
+  {static} +DateFormat formatter
+  +_ReserveScreenState createState()
+}
+
+"food_project::screens::table::reserve_screen.dart::ReserveScreen" o-- "intl::intl.dart::DateFormat"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "food_project::screens::table::reserve_screen.dart::ReserveScreen"
+
+class "food_project::screens::table::reserve_screen.dart::_ReserveScreenState" {
+  +dynamic formatted
+  +DateTime currentHour
+  +DateTime currentMinute
+  +DateTime currentTime
+  +TabController timeController
+  +TextEditingController phoneController
+  +dynamic tableValue
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State<T>" <|-- "food_project::screens::table::reserve_screen.dart::_ReserveScreenState"
+
+class "food_project::screens::table::tables_screen_.dart::TablesScreen" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "food_project::screens::table::tables_screen_.dart::TablesScreen"
+
+class "food_project::screens::welcome::welcome_screen.dart::WelcomeScreen" {
+  +GoogleSignIn googleSignIn
+  +Widget build()
+  +Future handleSignIn()
+}
+
+"food_project::screens::welcome::welcome_screen.dart::WelcomeScreen" o-- "google_sign_in::google_sign_in.dart::GoogleSignIn"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "food_project::screens::welcome::welcome_screen.dart::WelcomeScreen"
+
+class "food_project::shared::componentes::components.dart::NavMenuItem" {
+  +dynamic title
+  +Function rote
+}
+
+class "food_project::shared::network::remote::dio_helper.dart::DioHelper" {
+  {static} +Dio dio
+  {static} +Future postNotification()
+}
+
+"food_project::shared::network::remote::dio_helper.dart::DioHelper" o-- "dio::src::dio.dart::Dio"
+
+class "food_project::test.dart::MessageScreen" {
+  +_MessageScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "food_project::test.dart::MessageScreen"
+
+class "food_project::test.dart::_MessageScreenState" {
+  +FirebaseMessaging firebaseMessaging
+  +dynamic token
+  +void initState()
+  +void firebaseCloudMessage()
+  +Widget build()
+}
+
+"food_project::test.dart::_MessageScreenState" o-- "firebase_messaging::firebase_messaging.dart::FirebaseMessaging"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "food_project::test.dart::_MessageScreenState"
+
+
+@enduml
