@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_project/screens/cart/cubit/cubit.dart';
 import 'package:food_project/screens/cart/cubit/states.dart';
-import 'package:food_project/screens/favorites/cubit/cubit.dart';
-import 'package:food_project/screens/favorites/cubit/states.dart';
 import 'package:food_project/screens/orders/cubit/cubit.dart';
 import 'package:food_project/screens/orders/cubit/states.dart';
 import 'package:food_project/screens/orders/orders_screen.dart';
 import 'package:food_project/screens/profile/update_profile/update_user_profile_screen.dart';
+import 'package:food_project/screens/table/cubit/cubit.dart';
+import 'package:food_project/screens/table/cubit/state.dart';
 import 'package:food_project/screens/table/tables_screen_.dart';
 import 'package:food_project/screens/welcome/welcome_screen.dart';
 import 'package:food_project/shared/colors/colors.dart';
@@ -35,7 +35,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
 
           BlocProvider(
-            create: (context) => FavoritesCubit()..showFavorites(),
+            create: (context) => TableCubit()..showReserve(),
           ),
         ],
         child: BlocProvider(
@@ -44,10 +44,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
             listener: (context,state){},
             builder: (context,state){
               List userOrders = ShowOrderCubit.get(context).orderMeals ;
-              return BlocConsumer<FavoritesCubit,FavoritesStates>(
+              return BlocConsumer<TableCubit,TableStates>(
                 listener: (context,state){},
                 builder: (context,state){
-                  List favoritesItems = FavoritesCubit.get(context).favoritesMeals;
+                  List tableReserve = TableCubit.get(context).tableReserve;
                   return ListView(
                     children: [
                       BlocConsumer<CartCubit,CartStates>(
@@ -194,7 +194,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       },
                                       title: 'Tables Reservation',
                                       shape: Text(
-                                          '${favoritesItems.length}',
+                                          '${tableReserve.length}',
                                           style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,

@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_project/admin/all_meals_cubit/cubit.dart';
 import 'package:food_project/admin/all_meals_cubit/states.dart';
 import 'package:food_project/admin/screens/edit_meal/edit_meal_screen.dart';
+import 'package:food_project/admin/screens/tables/tables_screen.dart';
 import 'package:food_project/shared/componentes/components.dart';
+import 'package:outline_material_icons/outline_material_icons.dart';
 
 class AdminHomeScreen extends StatelessWidget {
   @override
@@ -11,55 +13,55 @@ class AdminHomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('ALL Meals'),
-        // actions: [
-        //   FlatButton(
-        //       onPressed: () {
-        //         navigateTo(context, AddMealScreen());
-        //       },
-        //       child: Center(
-        //         child: Column(
-        //           children: [
-        //             SizedBox(
-        //               height: 4,
-        //             ),
-        //             Icon(
-        //               Icons.add,
-        //               color: Colors.green[800],
-        //               size: 25,
-        //             ),
-        //             SizedBox(
-        //               height: 4,
-        //             ),
-        //             Text(
-        //               'ADD NEW MEALS',
-        //               style: TextStyle(color: Colors.white),
-        //             ),
-        //           ],
-        //         ),
-        //       )),
-        //   // FlatButton(
-        //   //     onPressed: () {
-        //   //       removeToken();
-        //   //       navigateAndFinish(context, WelcomeScreen());
-        //   //     },
-        //   //     child: Center(
-        //   //       child: Column(
-        //   //         children: [
-        //   //           SizedBox(
-        //   //             height: 4,
-        //   //           ),
-        //   //           Icon(Icons.logout, color: Colors.black),
-        //   //           SizedBox(
-        //   //             height: 5,
-        //   //           ),
-        //   //           Text(
-        //   //             'LOG OUT',
-        //   //             style: TextStyle(color: Colors.white),
-        //   //           ),
-        //   //         ],
-        //   //       ),
-        //   //     )),
-        // ],
+        actions: [
+          FlatButton(
+              onPressed: () {
+                navigateTo(context, AdminTablesScreen());
+              },
+              child: Center(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 4,
+                    ),
+                    Icon(
+                     OMIcons.tableChart,
+                      color: Colors.white,
+                      size: 25,
+                    ),
+                    SizedBox(
+                      height: 4,
+                    ),
+                    Text(
+                      'Tables',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                ),
+              )),
+          // FlatButton(
+          //     onPressed: () {
+          //       removeToken();
+          //       navigateAndFinish(context, WelcomeScreen());
+          //     },
+          //     child: Center(
+          //       child: Column(
+          //         children: [
+          //           SizedBox(
+          //             height: 4,
+          //           ),
+          //           Icon(Icons.logout, color: Colors.black),
+          //           SizedBox(
+          //             height: 5,
+          //           ),
+          //           Text(
+          //             'LOG OUT',
+          //             style: TextStyle(color: Colors.white),
+          //           ),
+          //         ],
+          //       ),
+          //     )),
+        ],
       ),
       drawer: buildAdminDrawer(context),
       body: BlocProvider(

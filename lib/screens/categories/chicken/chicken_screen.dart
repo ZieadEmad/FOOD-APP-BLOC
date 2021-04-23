@@ -10,6 +10,7 @@ import 'package:food_project/screens/favorites/cubit/cubit.dart';
 import 'package:food_project/screens/favorites/cubit/states.dart';
 import 'package:food_project/screens/favorites/favorites_screen.dart';
 import 'package:food_project/shared/componentes/components.dart';
+import 'package:outline_material_icons/outline_material_icons.dart';
 
 class ChickenScreen extends StatelessWidget {
   @override
@@ -29,7 +30,7 @@ class ChickenScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Icon(
-                      Icons.home,
+                      OMIcons.home,
                       color: Colors.white,
                     ),
                     Text('HOME'),
