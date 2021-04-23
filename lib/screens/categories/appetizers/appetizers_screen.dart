@@ -9,6 +9,7 @@ import 'package:food_project/screens/categories/appetizers/cubit/states.dart';
 import 'package:food_project/screens/favorites/cubit/cubit.dart';
 import 'package:food_project/screens/favorites/cubit/states.dart';
 import 'package:food_project/shared/componentes/components.dart';
+import 'package:outline_material_icons/outline_material_icons.dart';
 
 class AppetizersScreen extends StatelessWidget {
   @override
@@ -22,7 +23,7 @@ class AppetizersScreen extends StatelessWidget {
             child: Center(
               child: Column(
                 children: [
-                  Icon(Icons.home,color: Colors.white,),
+                  Icon(OMIcons.home,color: Colors.white,),
                   Text('HOME'),
                 ],
               ),
