@@ -98,11 +98,13 @@ class FamilyScreen extends StatelessWidget {
                                       buttonFunction: () {
                                         CartCubit.get(context)
                                             .addCart(familyMealsId[index]);
+                                        showToast(text: 'item added successfully', error: false);
                                       },
                                       isRemove: false,
                                       favoritesOnPress: () {
                                         FavoritesCubit.get(context)
                                             .addFavorites(familyMealsId[index]);
+                                        showToast(text: 'item added successfully', error: false);
                                       },
                                     ),
                                 separatorBuilder: (context, index) => SizedBox(

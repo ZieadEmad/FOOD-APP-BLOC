@@ -92,6 +92,8 @@ class DessertsAdminScreen extends StatelessWidget {
                                               index: index,
                                             );
                                             navigateTo(context,DessertsAdminScreen());
+                                            showToast(text: 'Meal Deleted Successfully', error: true);
+
                                           }
                                         },
                                         isAdmin: true,

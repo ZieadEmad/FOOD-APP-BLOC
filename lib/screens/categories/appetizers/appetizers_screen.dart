@@ -89,11 +89,13 @@ class AppetizersScreen extends StatelessWidget {
                                         buttonFunction: () {
                                           CartCubit.get(context)
                                               .addCart(chickenMealsId[index]);
+                                          showToast(text: 'item added successfully', error: false);
                                         },
                                         isRemove: false,
                                         favoritesOnPress: () {
                                           FavoritesCubit.get(context)
                                               .addFavorites(chickenMealsId[index]);
+                                          showToast(text: 'item added successfully', error: false);
                                         },
                                       ),
                                   separatorBuilder: (context, index) => SizedBox(

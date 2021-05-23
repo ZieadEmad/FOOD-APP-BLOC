@@ -13,22 +13,32 @@ class AppetizersAdminScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Appetizers'),
+      appBar: AppBar(
+        title: Text('Appetizers'),
         actions: [
-          SizedBox(width: 10,),
+          SizedBox(
+            width: 10,
+          ),
           InkWell(
-            onTap: (){navigateAndFinish(context, AdminHomeScreen());},
+            onTap: () {
+              navigateAndFinish(context, AdminHomeScreen());
+            },
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.home,color: Colors.white,),
+                  Icon(
+                    Icons.home,
+                    color: Colors.white,
+                  ),
                   Text('HOME'),
                 ],
               ),
             ),
           ),
-          SizedBox(width: 10,),
+          SizedBox(
+            width: 10,
+          ),
         ],
       ),
       drawer: buildAdminDrawer(context),
@@ -39,67 +49,72 @@ class AppetizersAdminScreen extends StatelessWidget {
           ),
         ],
         child: BlocProvider(
-            create: (context) => AppetizersCubit()..appetizers(),
-            child: BlocConsumer<AppetizersCubit, AppetizersStates>(
-              listener: (context, state) {
-                if (state is AppetizersStateLoading) {
-                  print('AppetizersStateLoading');
-                  return buildProgress(context: context, text: "please Wait.. ");
-                }
-                if (state is AppetizersStateSuccess) {
-                  print('AppetizersStateSuccess');
-                }
-                if (state is AppetizersStateError) {
-                  print('AppetizersStateError');
-                  Navigator.pop(context);
-                  return buildProgress(
-                    context: context,
-                    text: "${state.error.toString()}",
-                    error: true,
-                  );
-                }
-              },
-              builder: (context, state) {
-                List appetizersMeals = AppetizersCubit.get(context).appetizersMeals;
-                List chickenMealsId = AppetizersCubit.get(context).appetizersMealsId;
-                return ConditionalBuilder(
-                  condition: state is AppetizersStateLoading   ,
-                  builder: (context) => Center(child: CircularProgressIndicator(),),
-                  fallback:(context)=> BlocConsumer<AllMealsCubit,AllMealsStates>(
-                    listener: (context,state){},
-                    builder: (context,state){
-                      return  Column(
-                          children: [
+          create: (context) => AppetizersCubit()..appetizers(),
+          child: BlocConsumer<AppetizersCubit, AppetizersStates>(
+            listener: (context, state) {
+              if (state is AppetizersStateLoading) {
+                print('AppetizersStateLoading');
+                return buildProgress(context: context, text: "please Wait.. ");
+              }
+              if (state is AppetizersStateSuccess) {
+                print('AppetizersStateSuccess');
+              }
+              if (state is AppetizersStateError) {
+                print('AppetizersStateError');
+                Navigator.pop(context);
+                return buildProgress(
+                  context: context,
+                  text: "${state.error.toString()}",
+                  error: true,
+                );
+              }
+            },
+            builder: (context, state) {
+              List appetizersMeals =
+                  AppetizersCubit.get(context).appetizersMeals;
+              List chickenMealsId =
+                  AppetizersCubit.get(context).appetizersMealsId;
+              return ConditionalBuilder(
+                  condition: state is AppetizersStateLoading,
+                  builder: (context) => Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                  fallback: (context) =>
+                      BlocConsumer<AllMealsCubit, AllMealsStates>(
+                        listener: (context, state) {},
+                        builder: (context, state) {
+                          return Column(children: [
                             Expanded(
                               child: ListView.separated(
                                 physics: BouncingScrollPhysics(),
-                                padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                                padding:
+                                    EdgeInsets.only(top: 20.0, bottom: 20.0),
                                 itemBuilder: (context, index) =>
                                     buildMealItems(
-                                        imageUrl: appetizersMeals[index]['imageLink'].toString(),
-                                        price: appetizersMeals[index]['MealPrice'].toString(),
-                                        title: appetizersMeals[index]['MealTitle'].toString(),
-                                        dec: appetizersMeals[index]['MealDescription'].toString(),
-                                        buttonTitle: 'Delete Meal',
-                                        buttonColor:Colors.red,
-                                        buttonFunction: () {
-                                          if (chickenMealsId != null) {
-                                            AllMealsCubit.get(context).deleteMeal(
-                                                documentId: chickenMealsId,
-                                                index: index);
-                                            navigateTo(context,AppetizersAdminScreen());
-                                          }
-                                        },
-                                      isAdmin: true,
-                                      buttonColor2: Colors.green,
-                                      buttonTitle2: 'Edit Meal',
-                                      buttonFunction2: (){navigateAndFinish(context, EditMealScreen(
-                                      index: index,
-                                      meals: appetizersMeals,
-                                      mealsId: chickenMealsId,
-                                      ),);}
-
-                                    ),
+                                    imageUrl: appetizersMeals[index]['imageLink'].toString(),
+                                    price: appetizersMeals[index]['MealPrice'].toString(),
+                                    title: appetizersMeals[index]['MealTitle'].toString(),
+                                    dec: appetizersMeals[index]['MealDescription'].toString(),
+                                    buttonTitle: 'Delete Meal',
+                                    buttonColor: Colors.red,
+                                    buttonFunction: () {
+                                      if (chickenMealsId != null) {
+                                        AllMealsCubit.get(context).deleteMeal(documentId: chickenMealsId, index: index);
+                                        navigateTo(context, AppetizersAdminScreen());
+                                        showToast(text: 'Meal Deleted Successfully', error: true);
+                                      }
+                                    },
+                                    isAdmin: true,
+                                    buttonColor2: Colors.green,
+                                    buttonTitle2: 'Edit Meal',
+                                    buttonFunction2: () {navigateAndFinish(context,
+                                        EditMealScreen(
+                                          index: index,
+                                          meals: appetizersMeals,
+                                          mealsId: chickenMealsId,
+                                        ),
+                                      );
+                                    }),
                                 separatorBuilder: (context, index) => SizedBox(
                                   height: 25.0,
                                 ),
@@ -110,12 +125,11 @@ class AppetizersAdminScreen extends StatelessWidget {
                               height: 20.0,
                             ),
                           ]);
-                    },
-                  )
-                );
-              },
-            ),
+                        },
+                      ));
+            },
           ),
+        ),
       ),
     );
   }

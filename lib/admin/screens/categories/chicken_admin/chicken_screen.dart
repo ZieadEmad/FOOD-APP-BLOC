@@ -92,6 +92,8 @@ class ChickenAdminScreen extends StatelessWidget {
                                               index: index,
                                             );
                                             navigateTo(context,ChickenAdminScreen());
+                                            showToast(text: 'Meal Deleted Successfully', error: true);
+
                                           }
                                         },
                                         isAdmin: true,

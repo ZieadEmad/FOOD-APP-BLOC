@@ -90,6 +90,8 @@ class BeefAdminScreen extends StatelessWidget {
                                                 index: index,
                                             );
                                             navigateTo(context,BeefAdminScreen());
+                                            showToast(text: 'Meal Deleted Successfully', error: true);
+
                                           }
                                         },
                                         isAdmin: true ,

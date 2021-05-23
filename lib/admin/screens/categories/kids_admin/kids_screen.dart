@@ -90,6 +90,8 @@ class KidsAdminScreen extends StatelessWidget {
                                               index: index,
                                             );
                                             navigateTo(context,KidsAdminScreen());
+                                            showToast(text: 'Meal Deleted Successfully', error: true);
+
                                           }
                                         },
                                         isAdmin: true,

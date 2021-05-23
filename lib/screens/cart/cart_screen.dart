@@ -58,7 +58,10 @@ class CartScreen extends StatelessWidget {
             condition: state is ShowCartStateLoading,
             builder: (context) => Center(child: CircularProgressIndicator()),
             fallback: (context) => Scaffold(
-              appBar: AppBar(title: Text('Your Cart'),),
+              appBar: AppBar(
+                title: Text('Your Cart'),
+                leading: FlatButton(onPressed: (){navigateAndFinish(context, LayoutScreen());},child: Icon(Icons.arrow_back_rounded,color: Colors.white,),),
+              ),
               body: ConditionalBuilder(
                 condition: cartMeals.length != 0,
                 builder: (context) => Column(children: [
@@ -167,8 +170,8 @@ class CartScreen extends StatelessWidget {
                                                           documentId: cartMealsId,
                                                           index: index);
                                                   showToast(text: 'item Deleted', error: true);
-                                                  navigateAndFinish(
-                                                      context, LayoutScreen());
+                                                  navigateTo(
+                                                      context, CartScreen());
                                                 },
                                               ),
                                             ],

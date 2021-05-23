@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_project/admin/home_screen.dart';
 import 'package:food_project/admin/screens/tables/cubit/cubit.dart';
 import 'package:food_project/admin/screens/tables/cubit/states.dart';
+import 'package:food_project/screens/table/tables_screen_.dart';
 import 'package:food_project/shared/componentes/components.dart';
 
 class AdminTablesScreen extends StatelessWidget {
@@ -11,7 +12,7 @@ class AdminTablesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Orders'),
+        title: Text('Requests'),
         actions: [
           SizedBox(width: 10,),
           InkWell(
@@ -45,7 +46,15 @@ class AdminTablesScreen extends StatelessWidget {
       body: BlocProvider(
           create: (context)=> ShowAdminTableCubit()..showTablesAdmin(),
           child: BlocConsumer<ShowAdminTableCubit,ShowAdminTableStates>(
-            listener: (context,state){},
+            listener: (context,state){
+              if (state is NotificationsStatSuccess ){
+                return showToast(text: 'Order is Accepted', error: false);
+              }
+
+              if (state is MealDeleteStateSuccess ){
+                return showToast(text: 'Meals is Deleted', error: true);
+              }
+            },
             builder: (context,state){
               List adminTables = ShowAdminTableCubit.get(context).adminTables;
               List adminTablesId = ShowAdminTableCubit.get(context).adminTablesId;
@@ -61,8 +70,9 @@ class AdminTablesScreen extends StatelessWidget {
                       child: Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Card(
-                          shape: BeveledRectangleBorder(
-                            borderRadius: BorderRadius.circular(16.0),
+                          elevation: 10,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(35),
                           ),
                           child: Padding(
                             padding:  EdgeInsets.all(16.0),
@@ -118,7 +128,7 @@ class AdminTablesScreen extends StatelessWidget {
                                     defaultButton(function: (){
                                       ShowAdminTableCubit.get(context).editTableCancel(adminTablesId,index);
                                       //tell user message by user id meal is Accepted
-                                      ShowAdminTableCubit.get(context).sendConfirm(token: adminTables[index]['UserToken'],);
+                                      ShowAdminTableCubit.get(context).sendConfirm(token:'${adminTables[index]['UserToken'].toString()}');
                                     }, text: 'Accept',background: Colors.green,width: 95,toUpper: false),
 
                                     // defaultButton(function: (){
@@ -129,6 +139,7 @@ class AdminTablesScreen extends StatelessWidget {
 
                                     defaultButton(function: (){
                                       ShowAdminTableCubit.get(context).deleteMeal(documentId:adminTablesId,index: index);
+                                      navigateAndFinish(context, AdminTablesScreen());
                                     }, text: 'Delete',background: Colors.red,width: 95,toUpper: false),
                                   ],
                                 ),

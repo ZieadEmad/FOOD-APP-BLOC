@@ -61,8 +61,9 @@ class AdminOrderScreen extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Card(
-                        shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(16.0),
+                        elevation: 10,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(35),
                         ),
                         child: Padding(
                           padding:  EdgeInsets.all(16.0),

@@ -98,11 +98,15 @@ class DessertsScreen extends StatelessWidget {
                                         buttonFunction: () {
                                           CartCubit.get(context)
                                               .addCart(dessertsId[index]);
+                                          showToast(text: 'item added successfully', error: false);
+
                                         },
                                         isRemove: false,
                                         favoritesOnPress: () {
                                           FavoritesCubit.get(context)
                                               .addFavorites(dessertsId[index]);
+                                          showToast(text: 'item added successfully', error: false);
+
                                         },
                                       ),
                                   separatorBuilder: (context, index) => SizedBox(

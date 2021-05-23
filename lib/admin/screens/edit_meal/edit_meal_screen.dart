@@ -115,7 +115,7 @@ class EditMealScreen extends StatelessWidget {
                                 mealTitle: title.toString(),
                               );
 
-                              showToast(text: 'Meal is Edited' , error: false);
+                              showToast(text: 'Meal Edited Successfully' , error: false);
                               navigateAndFinish(context, AdminHomeScreen());
                             },
                             text: 'Edit Meal',

@@ -98,7 +98,13 @@ class TablesScreen extends StatelessWidget {
                           if(tableReserve[index]['CanCancel']=='true')
                             Center(
                                 child: defaultButton(
-                                    function: (){},
+                                    function: (){
+                                      TableCubit.get(context).deleteReserve(documentId:tableReserveId,index: index);
+                                      print('-----${tableReserveId[index]}');
+                                      navigateAndFinish(context, TablesScreen());
+                                      showToast(text: 'Your Request is Canceled ', error: false);
+
+                                    },
                                     text: 'Cancel',background: Colors.red,width: 200),
                             ),
                         ],

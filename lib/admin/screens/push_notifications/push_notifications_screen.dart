@@ -72,6 +72,9 @@ class _PushNotificationsScreenState extends State<PushNotificationsScreen> {
             if (state is NotificationsStateSuccess) {
               print('NotificationsStateSuccess');
               Navigator.pop(context);
+              navigateTo(context, PushNotificationsScreen());
+              showToast(text: 'Notification Sent', error: false);
+
             }
             if (state is NotificationsStateError) {
               print('NotificationsStateError');

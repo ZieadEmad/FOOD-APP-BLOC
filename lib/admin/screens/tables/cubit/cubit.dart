@@ -43,17 +43,19 @@ class ShowAdminTableCubit extends Cubit<ShowAdminTableStates> {
   }
 
   Future<void> deleteMeal({documentId,index}) async {
-    return await FirebaseFirestore.instance.collection('Orders')
+    return await FirebaseFirestore.instance.collection('Tables')
         .doc(documentId[index].toString())
-        .delete();
+        .delete().then((value) {
+          emit(MealDeleteStateSuccess());
+    });
   }
 
   editTableCancel(documentId,index)async{
     emit(ShowAdminTableStateLoading());
-    return await FirebaseFirestore.instance.collection('Orders')
+    return await FirebaseFirestore.instance.collection('Tables')
         .doc(documentId[index].toString())
         .update({
-      'canCancel':'false',
+      'CanCancel':'false',
     }).then((value) {
       emit(ShowAdminTableStateSuccess());
     }).catchError((e){
@@ -70,7 +72,7 @@ class ShowAdminTableCubit extends Cubit<ShowAdminTableStates> {
         'key=AAAA1k17ojI:APA91bH7Nkq3gRjWJNn-Ix48rBF9O9vKi-Ev0yb0VCddugXqbQXcKaOsq5yN8mxL2nsB1XtrHQdTAN15KCZ3TLuzRoNj1kOemxhFDkadpcznd3lLx36ZhWc8mwwVLolwj29Q_RI_j17D'
       },
       body: jsonEncode({
-        "to": "$token",
+        "to": "${token.toString()}",
         "collapse_key": "type_a",
         "notification": {
           "body": "The Restaurant Accept Your Table Reservation",

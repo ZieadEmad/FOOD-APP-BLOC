@@ -67,7 +67,12 @@ class AdminHomeScreen extends StatelessWidget {
       body: BlocProvider(
         create: (context) => AllMealsCubit()..allMeals(),
         child: BlocConsumer<AllMealsCubit, AllMealsStates>(
-          listener: (context, state) {},
+          listener: (context, state) {
+            if(state is DeleteMealsStateSuccess ){
+             return showToast(text: 'Meal Deleted Successfully', error:  false );
+            }
+          },
+
           builder: (context, state) {
             List meals = AllMealsCubit.get(context).meals;
             List mealsId = AllMealsCubit.get(context).mealsID;
@@ -78,8 +83,9 @@ class AdminHomeScreen extends StatelessWidget {
                   return Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Card(
-                      shape: BeveledRectangleBorder(
-                        borderRadius: BorderRadius.circular(16.0),
+                      elevation: 10,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(35),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),

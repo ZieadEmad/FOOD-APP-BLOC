@@ -48,9 +48,11 @@ editMeal({documentId,index,mealDec,mealPrice,mealTitle})async{
 }
 
  Future<void> deleteMeal({documentId,index}) async {
-  return await FirebaseFirestore.instance.collection('Meals')
+   return await FirebaseFirestore.instance.collection('Meals')
       .doc(documentId[index].toString())
-      .delete();
+      .delete().then((value) {
+     emit(DeleteMealsStateSuccess());
+   });
 }
 
   deleteMealFromScreen(index){

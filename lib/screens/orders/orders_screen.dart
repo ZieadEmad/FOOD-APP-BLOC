@@ -118,7 +118,8 @@ class _UserOrdersScreenState extends State<UserOrdersScreen> {
                                     if(orderMeals[index]['canCancel']=='true')
                                       Center(child: defaultButton(function: (){
                                         ShowAdminOrderCubit.get(context).deleteMeal(documentId:orderMealsId,index: index);
-                                        //navigateAndFinish(context, LayoutScreen());
+                                        navigateAndFinish(context, UserOrdersScreen());
+                                        showToast(text: 'Order Canceled', error: false);
                                       }, text: 'Cancel order',background: Colors.red,width: 200)),
 
                                   ],

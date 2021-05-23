@@ -133,11 +133,41 @@ class NotificationCubit extends Cubit<NotificationsStates> {
         "to": "/topics/TastyAdmin",
         "collapse_key": "type_a",
         "notification": {
-          "body": "Your Order Finish And Delivery Man On His Way",
-          "title": "Message From Tasty-Restaurant",
+          "body": "You Have A New Order",
+          "title": "Message From Customer",
         },
         "data": {
           "body": "You Have a New Order",
+          "title": "New Order",
+          "image": " "
+        }
+      }),
+    ).then((value) {
+      print('=======success');
+      emit(NotificationsStateSuccess());
+    }).catchError((e) {
+      print(e.toString());
+      emit(NotificationsStateError(e.toString()));
+    });
+  }
+
+  sendAdminTables()async{
+    http.post(
+      Uri.https('fcm.googleapis.com', 'fcm/send'),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        'Authorization':
+        'key=AAAA1k17ojI:APA91bH7Nkq3gRjWJNn-Ix48rBF9O9vKi-Ev0yb0VCddugXqbQXcKaOsq5yN8mxL2nsB1XtrHQdTAN15KCZ3TLuzRoNj1kOemxhFDkadpcznd3lLx36ZhWc8mwwVLolwj29Q_RI_j17D'
+      },
+      body: jsonEncode({
+        "to": "/topics/TastyAdmin",
+        "collapse_key": "type_a",
+        "notification": {
+          "body": "You Have A New Table Reservation",
+          "title": "Message From Customer",
+        },
+        "data": {
+          "body": "You Have A New Table Reservation",
           "title": "New Order",
           "image": " "
         }

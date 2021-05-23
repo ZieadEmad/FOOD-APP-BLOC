@@ -94,11 +94,13 @@ class BeefScreen extends StatelessWidget {
                                     buttonFunction: () {
                                       CartCubit.get(context)
                                           .addCart(beefMealsId[index]);
+                                      showToast(text: 'item added successfully', error: false);
                                     },
                                     isRemove: false,
                                     favoritesOnPress: () {
                                       FavoritesCubit.get(context)
                                           .addFavorites(beefMealsId[index]);
+                                      showToast(text: 'item added successfully', error: false);
                                     },
                                   ),
                               separatorBuilder: (context, index) => SizedBox(

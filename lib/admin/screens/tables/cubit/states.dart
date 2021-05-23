@@ -16,6 +16,8 @@ class ShowAdminTableStateError extends ShowAdminTableStates
   ShowAdminTableStateError(this.error);
 }
 
+class MealDeleteStateSuccess extends ShowAdminTableStates {}
+
 
 class NotificationsStatSuccess extends ShowAdminTableStates {}
 

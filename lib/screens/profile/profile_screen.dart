@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_project/screens/cart/cart_screen.dart';
 import 'package:food_project/screens/cart/cubit/cubit.dart';
 import 'package:food_project/screens/cart/cubit/states.dart';
 import 'package:food_project/screens/orders/cubit/cubit.dart';
@@ -174,7 +175,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 child: Row(
                                   children: [
                                     buildProfileItem(
-                                      function: () {},
+                                      function: () {navigateTo(context, CartScreen());},
                                       title: 'My Cart',
                                       shape: Text(
                                         '${cartItems.length}',

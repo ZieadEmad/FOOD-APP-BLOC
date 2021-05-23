@@ -89,6 +89,8 @@ class FamilyAdminScreen extends StatelessWidget {
                                               index: index,
                                             );
                                             navigateTo(context,FamilyAdminScreen());
+                                            showToast(text: 'Meal Deleted Successfully', error: true);
+
                                           }
                                         },
                                         isAdmin: true,
