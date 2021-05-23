@@ -75,9 +75,6 @@ class TableCubit extends Cubit<TableStates> {
             canRes = true ;
           }
         }
-        else {
-          canRes = true ;
-        }
       }
     }).then((value) async{
       print('------2');
