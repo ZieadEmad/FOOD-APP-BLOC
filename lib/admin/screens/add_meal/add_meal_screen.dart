@@ -56,6 +56,7 @@ class _AddMealScreenState extends State<AddMealScreen> {
         }
         if (state is AddMealStateSuccess) {
           print('SignUpStateSuccess');
+          showToast(text: 'Meal Added Successfully', error:  false );
           return navigateAndFinish(
             context,
             AdminHomeScreen(),
@@ -200,6 +201,8 @@ class _AddMealScreenState extends State<AddMealScreen> {
                             //     category: category,price: price);
                             AddMealCubit.get(context).addMeal(imageUrl: image,title: title , description: des,
                                 category: category,price: price);
+                            showToast(text: 'Meal Added Successfully', error:  false );
+
                           },
 
                           text: '+ Add Meal',
